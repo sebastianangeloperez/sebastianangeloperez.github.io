@@ -1,662 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sebastian Angelo-Perez — Visual Communication & Media Production</title>
-  <meta name="description" content="Senior Digital Producer specializing in visual storytelling, employer branding, and AI-integrated production. Danish public sector & beyond." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Senior Digital Producer specializing in visual storytelling, employer branding, and AI-integrated production. Danish public sector & beyond.">
+<title>Sebastian Angelo-Perez — Visual Communication & Media Production</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<style>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  :root{
+    --bg: #f5f2ea;
+    --bg-raised: #ece6d8;
+    --ink: #1a1813;
+    --ink-dim: #57523f;
+    --ink-faint: #918a72;
+    --accent: #5e6e52;
+    --accent-soft: rgba(94,110,82,0.10);
+    --rule: rgba(26,24,19,0.12);
+    --rule-strong: rgba(26,24,19,0.28);
+    --surface: #ffffff;
+  }
 
-  <style>
-    /* ─── TOKENS ─────────────────────────────────────────── */
-    :root {
-      --white:   #FFFFFF;
-      --black:   #111111;
-      --mid:     #888888;
-      --light:   #F2F2F2;
-      --red:     #E8001C;
-      --serif:   'Playfair Display', Georgia, serif;
-      --sans:    'Inter', system-ui, sans-serif;
-      --max:     1100px;
-      --gap:     clamp(2rem, 5vw, 4rem);
-    }
+  [data-theme="dark"]{
+    --bg: #14140f;
+    --bg-raised: #1c1c15;
+    --ink: #f2efe5;
+    --ink-dim: #b8b29c;
+    --ink-faint: #726c5a;
+    --accent: #9bb389;
+    --accent-soft: rgba(155,179,137,0.12);
+    --rule: rgba(242,239,229,0.10);
+    --rule-strong: rgba(242,239,229,0.22);
+    --surface: #1c1c15;
+  }
 
-    /* ─── RESET ──────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--sans);
-      font-weight: 300;
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--black);
-      background: var(--white);
-      -webkit-font-smoothing: antialiased;
-    }
-    img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    a { color: inherit; text-decoration: none; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'General Sans', sans-serif;
+    font-size:16px; line-height:1.65; font-weight:400;
+    transition:background .4s ease, color .4s ease;
+  }
+  ::selection{ background:var(--accent); color:var(--bg); }
+  a{ color:inherit; text-decoration:none; }
 
-    /* ─── LAYOUT ─────────────────────────────────────────── */
-    .wrap {
-      width: 100%;
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
-    }
+  .wrap{ max-width:1280px; margin:0 auto; padding:0 56px; }
+  @media(max-width:760px){ .wrap{ padding:0 24px; } }
 
-    /* ─── NAV ────────────────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--light);
-    }
-    nav .wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 56px;
-    }
-    .nav-name {
-      font-family: var(--serif);
-      font-size: 1rem;
-      letter-spacing: 0.01em;
-    }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.8125rem;
-      font-weight: 400;
-      color: var(--mid);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--black); }
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between;
+    padding:22px 56px; background:var(--bg); border-bottom:1px solid var(--rule);
+  }
+  @media(max-width:760px){ .nav{ padding:16px 24px; } }
 
-    /* ─── HERO ───────────────────────────────────────────── */
-    .hero {
-      padding-top: 56px;
-      min-height: 100svh;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid var(--light);
-    }
-    .hero .wrap {
-      padding-top: var(--gap);
-      padding-bottom: var(--gap);
-    }
-    .hero-eyebrow {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 1.5rem;
-    }
-    .hero-name {
-      font-family: var(--serif);
-      font-size: clamp(2.75rem, 7vw, 5.5rem);
-      font-weight: 400;
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-      margin-bottom: 2rem;
-    }
-    /* Signature: bilingual line coexisting */
-    .hero-tagline {
-      font-size: clamp(1rem, 2.2vw, 1.25rem);
-      font-weight: 300;
-      color: var(--mid);
-      max-width: 640px;
-      line-height: 1.5;
-      margin-bottom: 3rem;
-    }
-    .hero-tagline em {
-      font-style: italic;
-      color: var(--black);
-      font-family: var(--serif);
-    }
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 2rem;
-      font-size: 0.8125rem;
-      color: var(--mid);
-      letter-spacing: 0.04em;
-    }
-    .hero-meta span::before {
-      content: '— ';
-      color: var(--red);
-    }
-    .hero-scroll {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.6875rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--mid);
-    }
-    .hero-scroll-line {
-      width: 1px;
-      height: 48px;
-      background: var(--red);
-      animation: scrollLine 1.8s ease-in-out infinite;
-    }
-    @keyframes scrollLine {
-      0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
-      50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
-      51%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
-      100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
-    }
+  .logo{ display:flex; align-items:center; gap:10px; }
+  .logo svg{ width:30px; height:30px; }
+  .logo-text{ font-size:16px; font-weight:600; letter-spacing:-.01em; }
+  @media(max-width:480px){ .logo-text{ display:none; } }
 
-    /* ─── SECTION SHELL ──────────────────────────────────── */
-    section {
-      padding: var(--gap) 0;
-      border-bottom: 1px solid var(--light);
-    }
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 3rem;
-      gap: 1rem;
-    }
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--red);
-    }
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(1.5rem, 3vw, 2.25rem);
-      font-weight: 400;
-      line-height: 1.2;
-    }
-    .section-count {
-      font-size: 0.75rem;
-      color: var(--mid);
-      white-space: nowrap;
-    }
+  .nav-links{ display:flex; align-items:center; gap:36px; }
+  .nav-links a{ font-size:14px; color:var(--ink-dim); font-weight:500; }
+  .nav-links a:hover{ color:var(--ink); }
 
-    /* ─── WORK GRID ──────────────────────────────────────── */
-    .work-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1px;
-      background: var(--light);
-      border: 1px solid var(--light);
-    }
-    .work-item {
-      background: var(--white);
-      display: flex;
-      flex-direction: column;
-      cursor: default;
-      transition: background 0.2s;
-    }
-    .work-item:hover { background: #FAFAFA; }
+  .nav-right{ display:flex; align-items:center; gap:20px; }
 
-    .work-thumb {
-      aspect-ratio: 16/9;
-      background: var(--light);
-      overflow: hidden;
-      position: relative;
-    }
-    /* Placeholder when no image/video */
-    .work-thumb-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6875rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--mid);
-    }
-    .work-thumb iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    .work-thumb img {
-      position: absolute;
-      inset: 0;
-    }
+  .theme-toggle{
+    width:42px; height:22px; border-radius:20px; border:1px solid var(--rule-strong);
+    background:transparent; position:relative; cursor:pointer; flex-shrink:0;
+  }
+  .theme-toggle::after{
+    content:''; position:absolute; top:2px; left:2px; width:16px; height:16px;
+    border-radius:50%; background:var(--accent); transition:transform .3s ease;
+  }
+  [data-theme="dark"] .theme-toggle::after{ transform:translateX(20px); }
 
-    .work-body {
-      padding: 1.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .work-category {
-      font-size: 0.6875rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--red);
-    }
-    .work-title {
-      font-family: var(--serif);
-      font-size: 1.125rem;
-      font-weight: 400;
-      line-height: 1.3;
-    }
-    .work-desc {
-      font-size: 0.875rem;
-      color: var(--mid);
-      line-height: 1.55;
-      flex: 1;
-    }
-    .work-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.375rem;
-      margin-top: 0.75rem;
-    }
-    .tag {
-      font-size: 0.6875rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--mid);
-      border: 1px solid var(--light);
-      padding: 0.25rem 0.5rem;
-    }
+  .cta-btn{
+    background:var(--ink); color:var(--bg); font-size:13px; font-weight:600;
+    padding:11px 22px; border-radius:3px; transition:opacity .25s ease;
+  }
+  .cta-btn:hover{ opacity:.82; }
 
-    /* ─── SKILLS STRIP ───────────────────────────────────── */
-    .skills-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1.5rem;
-      padding: 2rem 0;
-    }
-    .skill {
-      font-size: 0.8125rem;
-      color: var(--mid);
-    }
-    .skill strong {
-      font-weight: 500;
-      color: var(--black);
-    }
+  @media(max-width:920px){ .nav-links{ display:none; } }
 
-    /* ─── PERSONAL ───────────────────────────────────────── */
-    .personal-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1px;
-      background: var(--light);
-      border: 1px solid var(--light);
-    }
-    .personal-card {
-      background: var(--white);
-      padding: 2rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .personal-card:hover { background: #FAFAFA; }
-    .personal-platform {
-      font-size: 0.6875rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--red);
-    }
-    .personal-title {
-      font-family: var(--serif);
-      font-size: 1.125rem;
-      font-weight: 400;
-    }
-    .personal-desc {
-      font-size: 0.875rem;
-      color: var(--mid);
-      line-height: 1.55;
-    }
-    .personal-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.375rem;
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: var(--black);
-      margin-top: auto;
-      padding-top: 0.75rem;
-      border-top: 1px solid var(--light);
-      transition: color 0.2s;
-    }
-    .personal-link:hover { color: var(--red); }
-    .personal-link::after { content: ' →'; }
+  /* ---------- HERO ---------- */
+  .hero{ min-height:88vh; display:flex; flex-direction:column; justify-content:center; padding:100px 0 80px; }
 
-    /* ─── CONTACT ────────────────────────────────────────── */
-    .contact-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem 3rem;
-      align-items: center;
-      padding: 2rem 0;
-    }
-    .contact-label {
-      font-family: var(--serif);
-      font-size: clamp(1.25rem, 3vw, 2rem);
-      font-weight: 400;
-      color: var(--black);
-    }
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1.5rem;
-      margin-left: auto;
-    }
-    .contact-link {
-      font-size: 0.875rem;
-      color: var(--mid);
-      border-bottom: 1px solid transparent;
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .contact-link:hover {
-      color: var(--black);
-      border-color: var(--red);
-    }
+  .hero-eyebrow{
+    font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:.1em; color:var(--accent);
+    margin-bottom:26px;
+  }
+  .hero h1{
+    font-size:clamp(52px, 7.6vw, 96px); font-weight:600; letter-spacing:-.03em; line-height:1.0;
+    margin-bottom:34px;
+  }
+  .hero-tagline{ font-size:clamp(19px,2vw,23px); font-weight:500; max-width:32ch; margin-bottom:10px; }
+  .hero-tagline-es{ font-size:16px; color:var(--ink-dim); font-style:italic; max-width:42ch; margin-bottom:44px; }
 
-    /* ─── FOOTER ─────────────────────────────────────────── */
-    footer {
-      padding: 1.5rem 0;
-      font-size: 0.75rem;
-      color: var(--mid);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+  .hero-tags{ display:flex; flex-wrap:wrap; gap:10px; }
+  .hero-tags span{
+    font-size:13px; font-weight:500; color:var(--ink-dim); background:var(--bg-raised);
+    border:1px solid var(--rule); padding:7px 15px; border-radius:20px;
+  }
+  .hero-tags span.lang{ background:var(--accent-soft); color:var(--accent); border-color:transparent; font-weight:600; }
 
-    /* ─── RESPONSIVE ─────────────────────────────────────── */
-    @media (max-width: 680px) {
-      .nav-links { display: none; }
-      .work-grid  { grid-template-columns: 1fr; }
-      .personal-grid { grid-template-columns: 1fr; }
-      .contact-links { margin-left: 0; }
-    }
+  /* ---------- SECTIONS ---------- */
+  .section{ padding:110px 0; border-top:1px solid var(--rule); }
+  @media(max-width:760px){ .section{ padding:76px 0; } }
 
-    /* ─── REDUCED MOTION ─────────────────────────────────── */
-    @media (prefers-reduced-motion: reduce) {
-      .hero-scroll-line { animation: none; }
-    }
-  </style>
+  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:32px; margin-bottom:56px; flex-wrap:wrap; }
+  .section-label{ font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); margin-bottom:14px; }
+  .section-head h2{ font-size:clamp(34px,3.6vw,48px); font-weight:600; letter-spacing:-.02em; }
+  .section-count{ font-size:14px; color:var(--ink-faint); font-weight:500; padding-bottom:6px; }
+
+  /* ---------- WORK GRID ---------- */
+  .work-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:56px 40px; }
+  @media(max-width:820px){ .work-grid{ grid-template-columns:1fr; gap:48px; } }
+
+  .case-thumb{
+    aspect-ratio:16/10; background:var(--bg-raised); border:1px solid var(--rule); border-radius:4px;
+    display:flex; align-items:center; justify-content:center; margin-bottom:22px; position:relative;
+    flex-direction:column; gap:14px;
+  }
+  .play-icon{
+    width:52px; height:52px; border-radius:50%; background:var(--surface); border:1px solid var(--rule-strong);
+    display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,.06);
+  }
+  .play-icon svg{ width:13px; height:13px; fill:var(--ink); margin-left:2px; }
+  .thumb-note{ font-size:12px; color:var(--ink-faint); letter-spacing:.03em; }
+
+  .case-kicker{ font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--accent); margin-bottom:8px; }
+  .case h3{ font-size:22px; font-weight:600; letter-spacing:-.01em; margin-bottom:12px; }
+  .case p{ font-size:15px; color:var(--ink-dim); margin-bottom:16px; max-width:56ch; }
+  .case-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .case-tags span{
+    font-size:12px; font-weight:500; color:var(--ink-dim); background:var(--bg-raised);
+    border:1px solid var(--rule); padding:5px 12px; border-radius:20px;
+  }
+
+  /* ---------- TOOLS STRIP ---------- */
+  .tools-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:4px; overflow:hidden; }
+  @media(max-width:820px){ .tools-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:540px){ .tools-grid{ grid-template-columns:1fr; } }
+
+  .tool{ background:var(--surface); padding:30px 28px; }
+  .tool h4{ font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--accent); margin-bottom:10px; }
+  .tool p{ font-size:15px; color:var(--ink-dim); }
+
+  /* ---------- PERSONAL ---------- */
+  .personal-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:40px; }
+  @media(max-width:820px){ .personal-grid{ grid-template-columns:1fr; } }
+
+  .personal-card{
+    background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:44px 40px;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  @media(max-width:760px){ .personal-card{ padding:32px 26px; } }
+  .personal-card .case-kicker{ margin-bottom:0; }
+  .personal-card h3{ font-size:24px; font-weight:600; letter-spacing:-.01em; }
+  .personal-card p{ font-size:15.5px; color:var(--ink-dim); max-width:52ch; }
+  .personal-card a{
+    font-size:14px; font-weight:600; color:var(--accent); margin-top:8px;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .personal-card a::after{ content:'→'; transition:transform .25s ease; }
+  .personal-card a:hover::after{ transform:translateX(4px); }
+
+  /* ---------- CONTACT ---------- */
+  .contact-box{
+    background:var(--bg-raised); border-radius:6px; padding:80px 64px;
+    display:flex; flex-direction:column; align-items:flex-start; gap:12px;
+  }
+  @media(max-width:760px){ .contact-box{ padding:48px 28px; } }
+  .contact-box h2{ font-size:clamp(38px,5.6vw,68px); font-weight:600; letter-spacing:-.03em; line-height:1.04; }
+  .contact-box h2 span{ color:var(--accent); }
+  .contact-es{ font-size:18px; font-style:italic; color:var(--ink-dim); margin-bottom:28px; }
+  .contact-links{ display:flex; gap:16px; flex-wrap:wrap; }
+  .contact-links a{
+    font-size:15px; font-weight:600; padding:13px 24px; border:1px solid var(--rule-strong); border-radius:30px;
+    transition:background .25s ease, color .25s ease, border-color .25s ease;
+  }
+  .contact-links a:hover{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
+
+  .footer-row{
+    display:flex; justify-content:space-between; padding:36px 0; font-size:13px;
+    color:var(--ink-faint); flex-wrap:wrap; gap:12px;
+  }
+</style>
 </head>
-<body>
+<body data-theme="light">
 
-  <!-- NAV -->
-  <nav>
-    <div class="wrap">
-      <span class="nav-name">Sebastian Angelo-Perez</span>
-      <ul class="nav-links">
-        <li><a href="#work">Work</a></li>
-        <li><a href="#personal">Personal</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
+<nav class="nav">
+  <div class="logo">
+    <svg viewBox="0 0 32 32" fill="none">
+      <rect x="1" y="1" width="30" height="30" rx="6" stroke="var(--accent)" stroke-width="1.4"/>
+      <text x="16" y="21" text-anchor="middle" font-family="General Sans, sans-serif" font-weight="700" font-size="13" fill="var(--ink)">SP</text>
+    </svg>
+    <span class="logo-text">Sebastian Angelo-Perez</span>
+  </div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#tools">Toolbox</a>
+    <a href="#personal">Personal</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-toggle" onclick="document.body.dataset.theme = document.body.dataset.theme==='light' ? 'dark' : 'light'" aria-label="Toggle light and dark mode"></button>
+    <a class="cta-btn" href="#contact">Get in touch</a>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero" style="border-bottom:1px solid var(--light); position:relative;">
-    <div class="wrap">
-      <p class="hero-eyebrow">Senior Digital Producer · Fredericia, Denmark</p>
-      <h1 class="hero-name">Sebastian<br>Angelo-Perez</h1>
-      <p class="hero-tagline">
-        Twenty years translating complexity into visuals that land.<br>
-        <em>Veinte años convirtiendo lo complejo en algo que se entiende.</em>
-      </p>
-      <div class="hero-meta">
-        <span>Visual Communication</span>
-        <span>Employer Branding</span>
-        <span>Motion & Video</span>
-        <span>AI-integrated Production</span>
-        <span>ES · DA · EN</span>
-      </div>
-    </div>
-    <div class="hero-scroll" aria-hidden="true">
-      <div class="hero-scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- WORK -->
-  <section id="work">
-    <div class="wrap">
-      <div class="section-header">
-        <div>
-          <p class="section-label">Selected Work</p>
-          <h2 class="section-title">Cases</h2>
-        </div>
-        <span class="section-count">7 projects</span>
-      </div>
-
-      <div class="work-grid">
-
-        <!-- CASE 1: Employer Branding -->
-        <div class="work-item">
-          <div class="work-thumb">
-            <!-- REPLACE: <iframe src="https://player.vimeo.com/video/YOUR_ID?title=0&byline=0&portrait=0" allowfullscreen></iframe> -->
-            <div class="work-thumb-placeholder">Video — Vimeo embed</div>
-          </div>
-          <div class="work-body">
-            <span class="work-category">Employer Branding · Film</span>
-            <h3 class="work-title">Hero Films — Gældsstyrelsen</h3>
-            <p class="work-desc">Three 2–3 min narrative films produced end-to-end: storytelling model, on-site shoot, interview & B-roll direction, editing, and animated logo for the new brand identity. Multi-channel delivery: LinkedIn, intranet, gaeldst.dk.</p>
-            <div class="work-tags">
-              <span class="tag">Premiere Pro</span>
-              <span class="tag">After Effects</span>
-              <span class="tag">Direction</span>
-              <span class="tag">Brand Identity</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CASE 2: Motion & AI Compositing -->
-        <div class="work-item">
-          <div class="work-thumb">
-            <!-- REPLACE: <iframe src="https://player.vimeo.com/video/YOUR_ID?title=0&byline=0&portrait=0" allowfullscreen></iframe> -->
-            <div class="work-thumb-placeholder">Video — Vimeo embed</div>
-          </div>
-          <div class="work-body">
-            <span class="work-category">Motion · AI Production</span>
-            <h3 class="work-title">Compositing & AI Pipeline</h3>
-            <p class="work-desc">After Effects compositing with Firefly and Veo 3.1 as generative complements — internal greeting films, green screen productions with AI-generated backgrounds (Eftergivelse series). A production model that scales a team of one.</p>
-            <div class="work-tags">
-              <span class="tag">After Effects</span>
-              <span class="tag">Adobe Firefly</span>
-              <span class="tag">Veo 3.1</span>
-              <span class="tag">Green Screen</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CASE 3: Explainer -->
-        <div class="work-item">
-          <div class="work-thumb">
-            <!-- REPLACE: <iframe src="https://player.vimeo.com/video/YOUR_ID?title=0&byline=0&portrait=0" allowfullscreen></iframe> -->
-            <div class="work-thumb-placeholder">Video — Vimeo embed</div>
-          </div>
-          <div class="work-body">
-            <span class="work-category">Explainer · Motion Design</span>
-            <h3 class="work-title">Modregning & Borger i Udlandet</h3>
-            <p class="work-desc">2D explainer animations with custom icon sets fully compliant with Skatte- og Vækstministeriet and Gældsstyrelsen brand guidelines. Animated avatars for the Borger i Udlandet series. Complex tax processes made human.</p>
-            <div class="work-tags">
-              <span class="tag">After Effects</span>
-              <span class="tag">Illustrator</span>
-              <span class="tag">Brand Compliance</span>
-              <span class="tag">Civic Communication</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CASE 4: Web Visual Direction -->
-        <div class="work-item">
-          <div class="work-thumb">
-            <!-- REPLACE: <img src="images/gaeldst-web.jpg" alt="gaeldst.dk visual direction" /> -->
-            <div class="work-thumb-placeholder">Screenshot — gaeldst.dk</div>
-          </div>
-          <div class="work-body">
-            <span class="work-category">Visual Direction · Web</span>
-            <h3 class="work-title">gaeldst.dk — Visual Identity at Scale</h3>
-            <p class="work-desc">Complete visual overhaul of gaeldst.dk: Getty images restyled to brand with a prominent red signature element, custom photography, and topic-specific icons redrawn per page (fuldmagt, lønindeholdelse, and more). Managed through Umbraco CMS.</p>
-            <div class="work-tags">
-              <span class="tag">Photoshop</span>
-              <span class="tag">Illustrator</span>
-              <span class="tag">Umbraco CMS</span>
-              <span class="tag">Photography</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CASE 5: Brand Launch -->
-        <div class="work-item">
-          <div class="work-thumb">
-            <!-- REPLACE: <img src="images/brand-launch.jpg" alt="Brand launch materials" /> -->
-            <div class="work-thumb-placeholder">Image — Brand materials</div>
-          </div>
-          <div class="work-body">
-            <span class="work-category">Brand Identity · Print · Strategy</span>
-            <h3 class="work-title">Brand Launch — Vi hjælper Danmark ud af gæld</h3>
-            <p class="work-desc">Full brand rollout across channels: strategy deck designed from scratch (presented to all of Gældsstyrelsen with subdirectors and kontorchefs), Flip mønten dialogue card campaign, job fair materials (roll-ups, trifolds), and internal communication assets.</p>
-            <div class="work-tags">
-              <span class="tag">InDesign</span>
-              <span class="tag">Strategy</span>
-              <span class="tag">Print Production</span>
-              <span class="tag">Campaign</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CASE 6: Portrait Photography -->
-        <div class="work-item">
-          <div class="work-thumb">
-            <!-- REPLACE: <img src="images/portraits.jpg" alt="Employee portrait series" /> -->
-            <div class="work-thumb-placeholder">Image — Portrait series</div>
-          </div>
-          <div class="work-body">
-            <span class="work-category">Photography · Production</span>
-            <h3 class="work-title">Employee Portrait Series</h3>
-            <p class="work-desc">Exclusive photographer for all employee portraits across Gældsstyrelsen — fixed studio in Middelfart and mobile green screen setup deployed at ledersamlinger. Voxpop filming on location. Consistent visual identity across 100+ portraits.</p>
-            <div class="work-tags">
-              <span class="tag">Fuji X-T50</span>
-              <span class="tag">Studio Lighting</span>
-              <span class="tag">Mobile Setup</span>
-              <span class="tag">Voxpop</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CASE 7: Recruitment + LinkedIn -->
-        <div class="work-item" style="grid-column: 1 / -1;">
-          <div class="work-thumb" style="aspect-ratio: 21/6;">
-            <!-- REPLACE: <iframe src="https://player.vimeo.com/video/YOUR_ID?title=0&byline=0&portrait=0" allowfullscreen></iframe> -->
-            <div class="work-thumb-placeholder">Video — LinkedIn content series + Podcast</div>
-          </div>
-          <div class="work-body">
-            <span class="work-category">Content Strategy · Recruitment · Podcast</span>
-            <h3 class="work-title">LinkedIn Series, Recruitment Films & Vodcast</h3>
-            <p class="work-desc">Ongoing content engine: animated and static short-form videos for LinkedIn, recruitment films complementing job postings and shown at job fairs (Jura, and others), and internal podcast/vodcast production. Full pipeline from concept to platform-ready delivery.</p>
-            <div class="work-tags">
-              <span class="tag">Premiere Pro</span>
-              <span class="tag">After Effects</span>
-              <span class="tag">LinkedIn Strategy</span>
-              <span class="tag">Podcast Production</span>
-              <span class="tag">4:5 Format</span>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /work-grid -->
-
-      <!-- Skills strip -->
-      <div class="skills-strip">
-        <span class="skill"><strong>Video</strong> Premiere Pro · After Effects · DaVinci</span>
-        <span class="skill"><strong>Design</strong> Illustrator · Photoshop · InDesign</span>
-        <span class="skill"><strong>Web</strong> Umbraco · HTML/CSS · GSAP</span>
-        <span class="skill"><strong>AI</strong> Claude · Firefly · Veo 3.1 · Kling</span>
-        <span class="skill"><strong>Camera</strong> Canon EOS R3 · Fuji X-T50</span>
-        <span class="skill"><strong>Languages</strong> ES · DA · EN</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- PERSONAL -->
-  <section id="personal">
-    <div class="wrap">
-      <div class="section-header">
-        <div>
-          <p class="section-label">Beyond the brief</p>
-          <h2 class="section-title">Personal Practice</h2>
-        </div>
-      </div>
-
-      <div class="personal-grid">
-
-        <div class="personal-card">
-          <span class="personal-platform">Photography · Instagram</span>
-          <h3 class="personal-title">Street Photography</h3>
-          <p class="personal-desc">Shot on Fuji X-T50. Exploring liminal moments in everyday Danish life — the pause, the peripheral, the overlooked. A practice that sharpens the editorial eye that guides everything else.</p>
-          <!-- REPLACE href with your Instagram URL -->
-          <a href="https://instagram.com/YOUR_HANDLE" target="_blank" rel="noopener" class="personal-link">View on Instagram</a>
-        </div>
-
-        <div class="personal-card">
-          <span class="personal-platform">Essays · Substack · ES</span>
-          <h3 class="personal-title">Escritura ensayística</h3>
-          <p class="personal-desc">Exploración en castellano de realidad liminal, cine, meditación y escritura abierta. Un espacio donde el pensamiento no tiene que justificarse con resultados.</p>
-          <!-- REPLACE href with your Substack URL -->
-          <a href="https://YOUR_HANDLE.substack.com" target="_blank" rel="noopener" class="personal-link">Leer en Substack</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="wrap">
-      <div class="contact-row">
-        <p class="contact-label">Let's work together.<br><em style="font-family:var(--serif); font-style:italic; font-weight:400;">Hablemos.</em></p>
-        <div class="contact-links">
-          <a href="mailto:s.angelo.perez@gmail.com" class="contact-link">s.angelo.perez@gmail.com</a>
-          <a href="https://linkedin.com/in/angeloperez" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
-          <!-- REPLACE with your GitHub Pages URL once live -->
-          <a href="#" class="contact-link">sebastianangelo.github.io</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
+<header class="hero">
   <div class="wrap">
-    <footer>
+    <div class="hero-eyebrow">Senior Digital Producer · Fredericia, Denmark</div>
+    <h1>Sebastian<br>Angelo-Perez</h1>
+    <p class="hero-tagline">Twenty years translating complexity into visuals that land.</p>
+    <p class="hero-tagline-es">Veinte años convirtiendo lo complejo en algo que se entiende.</p>
+    <div class="hero-tags">
+      <span>Visual Communication</span>
+      <span>Employer Branding</span>
+      <span>Motion &amp; Video</span>
+      <span>AI-integrated Production</span>
+      <span class="lang">ES · DA · EN</span>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-label">Selected Work</div>
+        <h2>Cases</h2>
+      </div>
+      <span class="section-count">7 projects</span>
+    </div>
+
+    <div class="work-grid">
+      <article class="case">
+        <div class="case-thumb">
+          <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9V3z" fill="currentColor"/></svg></div>
+          <span class="thumb-note">Video — Vimeo embed</span>
+        </div>
+        <div class="case-kicker">Employer Branding · Film</div>
+        <h3>Hero Films — Gældsstyrelsen</h3>
+        <p>Three 2–3 min narrative films produced end-to-end: storytelling model, on-site shoot, interview &amp; B-roll direction, editing, and animated logo for the new brand identity. Multi-channel delivery: LinkedIn, intranet, gaeldst.dk.</p>
+        <div class="case-tags"><span>Premiere Pro</span><span>After Effects</span><span>Direction</span><span>Brand Identity</span></div>
+      </article>
+
+      <article class="case">
+        <div class="case-thumb">
+          <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9V3z" fill="currentColor"/></svg></div>
+          <span class="thumb-note">Video — Vimeo embed</span>
+        </div>
+        <div class="case-kicker">Motion · AI Production</div>
+        <h3>Compositing &amp; AI Pipeline</h3>
+        <p>After Effects compositing with Firefly and Veo 3.1 as generative complements — internal greeting films, green screen productions with AI-generated backgrounds (Eftergivelse series). A production model that scales a team of one.</p>
+        <div class="case-tags"><span>After Effects</span><span>Adobe Firefly</span><span>Veo 3.1</span><span>Green Screen</span></div>
+      </article>
+
+      <article class="case">
+        <div class="case-thumb">
+          <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9V3z" fill="currentColor"/></svg></div>
+          <span class="thumb-note">Video — Vimeo embed</span>
+        </div>
+        <div class="case-kicker">Explainer · Motion Design</div>
+        <h3>Modregning &amp; Borger i Udlandet</h3>
+        <p>2D explainer animations with custom icon sets fully compliant with Skatte- og Vækstministeriet and Gældsstyrelsen brand guidelines. Animated avatars for the Borger i Udlandet series. Complex tax processes made human.</p>
+        <div class="case-tags"><span>After Effects</span><span>Illustrator</span><span>Brand Compliance</span><span>Civic Communication</span></div>
+      </article>
+
+      <article class="case">
+        <div class="case-thumb">
+          <span class="thumb-note">Screenshot — gaeldst.dk</span>
+        </div>
+        <div class="case-kicker">Visual Direction · Web</div>
+        <h3>gaeldst.dk — Visual Identity at Scale</h3>
+        <p>Complete visual overhaul of gaeldst.dk: Getty images restyled to brand with a prominent red signature element, custom photography, and topic-specific icons redrawn per page (fuldmagt, lønindeholdelse, and more). Managed through Umbraco CMS.</p>
+        <div class="case-tags"><span>Photoshop</span><span>Illustrator</span><span>Umbraco CMS</span><span>Photography</span></div>
+      </article>
+
+      <article class="case">
+        <div class="case-thumb">
+          <span class="thumb-note">Image — Brand materials</span>
+        </div>
+        <div class="case-kicker">Brand Identity · Print · Strategy</div>
+        <h3>Brand Launch — Vi hjælper Danmark ud af gæld</h3>
+        <p>Full brand rollout across channels: strategy deck designed from scratch (presented to all of Gældsstyrelsen with subdirectors and kontorchefs), Flip mønten dialogue card campaign, job fair materials (roll-ups, trifolds), and internal communication assets.</p>
+        <div class="case-tags"><span>InDesign</span><span>Strategy</span><span>Print Production</span><span>Campaign</span></div>
+      </article>
+
+      <article class="case">
+        <div class="case-thumb">
+          <span class="thumb-note">Image — Portrait series</span>
+        </div>
+        <div class="case-kicker">Photography · Production</div>
+        <h3>Employee Portrait Series</h3>
+        <p>Exclusive photographer for all employee portraits across Gældsstyrelsen — fixed studio in Middelfart and mobile green screen setup deployed at ledersamlinger. Voxpop filming on location. Consistent visual identity across 100+ portraits.</p>
+        <div class="case-tags"><span>Fuji X-T50</span><span>Studio Lighting</span><span>Mobile Setup</span><span>Voxpop</span></div>
+      </article>
+
+      <article class="case">
+        <div class="case-thumb">
+          <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9V3z" fill="currentColor"/></svg></div>
+          <span class="thumb-note">Video — LinkedIn content series + Podcast</span>
+        </div>
+        <div class="case-kicker">Content Strategy · Recruitment · Podcast</div>
+        <h3>LinkedIn Series, Recruitment Films &amp; Vodcast</h3>
+        <p>Ongoing content engine: animated and static short-form videos for LinkedIn, recruitment films complementing job postings and shown at job fairs (Jura, and others), and internal podcast/vodcast production. Full pipeline from concept to platform-ready delivery.</p>
+        <div class="case-tags"><span>Premiere Pro</span><span>After Effects</span><span>LinkedIn Strategy</span><span>Podcast Production</span><span>4:5 Format</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tools">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-label">Toolbox</div>
+        <h2>How the work gets made</h2>
+      </div>
+    </div>
+
+    <div class="tools-grid">
+      <div class="tool"><h4>Video</h4><p>Premiere Pro · After Effects · DaVinci</p></div>
+      <div class="tool"><h4>Design</h4><p>Illustrator · Photoshop · InDesign</p></div>
+      <div class="tool"><h4>Web</h4><p>Umbraco · HTML/CSS · GSAP</p></div>
+      <div class="tool"><h4>AI</h4><p>Claude · Firefly · Veo 3.1 · Kling</p></div>
+      <div class="tool"><h4>Camera</h4><p>Canon EOS R3 · Fuji X-T50</p></div>
+      <div class="tool"><h4>Languages</h4><p>ES · DA · EN</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="personal">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-label">Beyond the brief</div>
+        <h2>Personal Practice</h2>
+      </div>
+    </div>
+
+    <div class="personal-grid">
+      <div class="personal-card">
+        <div class="case-kicker">Photography · Instagram</div>
+        <h3>Street Photography</h3>
+        <p>Shot on Fuji X-T50. Exploring liminal moments in everyday Danish life — the pause, the peripheral, the overlooked. A practice that sharpens the editorial eye that guides everything else.</p>
+        <a href="https://instagram.com/YOUR_HANDLE" target="_blank" rel="noopener">View on Instagram</a>
+      </div>
+      <div class="personal-card">
+        <div class="case-kicker">Essays · Substack · ES</div>
+        <h3>Escritura ensayística</h3>
+        <p>Exploración en castellano de realidad liminal, cine, meditación y escritura abierta. Un espacio donde el pensamiento no tiene que justificarse con resultados.</p>
+        <a href="https://YOUR_HANDLE.substack.com" target="_blank" rel="noopener">Leer en Substack</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <h2>Let's work <span>together.</span></h2>
+      <p class="contact-es">Hablemos.</p>
+      <div class="contact-links">
+        <a href="mailto:s.angelo.perez@gmail.com">s.angelo.perez@gmail.com</a>
+        <a href="https://linkedin.com/in/angeloperez" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-row">
       <span>© 2026 Sebastian Angelo-Perez</span>
       <span>Fredericia, Denmark · ES · DA · EN</span>
-    </footer>
+    </div>
   </div>
+</section>
 
 </body>
 </html>
