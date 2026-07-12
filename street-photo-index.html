@@ -188,7 +188,7 @@
 <main class="wrap">
   <div class="gallery" id="gallery"></div>
   <div class="gallery-note" id="empty-note">
-    Aún no hay fotos. Sube imágenes a este repositorio con los nombres <strong>photo-01.jpg</strong>, <strong>photo-02.jpg</strong>, <strong>photo-03.jpg</strong>… y aparecerán aquí automáticamente.
+    Aún no hay fotos. Sube imágenes a la carpeta <strong>fotos/</strong> de este repositorio con los nombres <strong>photo-01.jpg</strong>, <strong>photo-02.jpg</strong>, <strong>photo-03.jpg</strong>… y aparecerán aquí automáticamente.
   </div>
 </main>
 
@@ -211,30 +211,56 @@
 </footer>
 
 <script>
-  // ---- Galería auto-descubierta ----
-  // Busca photo-01.jpg hasta photo-80.jpg en este repositorio.
-  // Los números faltantes se omiten en silencio: para añadir una foto,
-  // solo sube photo-NN.jpg al repo — sin editar el HTML.
+  // ============================================================
+  //  GALERÍA — dos mecanismos, en este orden:
+  //
+  //  1) MANIFEST (lista FOTOS, abajo): fotos con nombre real y
+  //     título visible. El orden de la lista = orden en pantalla.
+  //     Formato de cada línea:
+  //     { archivo: 'fotos/nombre-real.jpg', titulo: 'Título · Lugar' },
+  //
+  //  2) RESPALDO AUTOMÁTICO: busca photo-01.jpg … photo-80.jpg
+  //     primero en la carpeta fotos/ y después en la raíz del repo.
+  //     Los números faltantes se omiten en silencio.
+  //     Para añadir una foto sin editar nada: sube fotos/photo-NN.jpg.
+  // ============================================================
   (function(){
+
+    // ---- 1. MANIFEST — edita solo esta lista ----
+    var FOTOS = [
+      // Ejemplo (borra la barra doble para activar la línea):
+      // { archivo: 'fotos/guldkalven-fredericia.jpg', titulo: 'Guldkalven · Fredericia' },
+    ];
+
     var MAX = 80;
     var gallery = document.getElementById('gallery');
     var note = document.getElementById('empty-note');
+    var añadidas = {};  // evita duplicados entre manifest y respaldo
+    var contador = 0;
 
     function pad(n){ return n < 10 ? '0'+n : ''+n; }
 
-    function addPhoto(src, n){
+    function addPhoto(src, titulo){
+      if (añadidas[src]) return;
+      añadidas[src] = true;
+      contador++;
       var fig = document.createElement('figure');
       fig.className = 'ph';
       var btn = document.createElement('button');
       btn.type = 'button';
-      btn.setAttribute('aria-label', 'Ampliar fotografía ' + n);
+      btn.setAttribute('aria-label', 'Ampliar fotografía: ' + titulo);
       var img = document.createElement('img');
       img.src = src;
       img.loading = 'lazy';
-      img.alt = 'Fotografía ' + n + ' — Sebastián Angelo-Pérez';
+      img.alt = titulo + ' — Sebastián Angelo-Pérez';
       btn.appendChild(img);
       var cap = document.createElement('figcaption');
-      cap.innerHTML = '<span>№ ' + pad(n) + '</span><span>Sebastián Angelo-Pérez</span>';
+      var izq = document.createElement('span');
+      izq.textContent = titulo;
+      var der = document.createElement('span');
+      der.textContent = 'Sebastián Angelo-Pérez';
+      cap.appendChild(izq);
+      cap.appendChild(der);
       fig.appendChild(btn);
       fig.appendChild(cap);
       gallery.appendChild(fig);
@@ -242,20 +268,37 @@
       note.style.display = 'none';
     }
 
-    // Sondeo secuencial para mantener el orden estable
-    var queue = [];
-    for (var i = 1; i <= MAX; i++) queue.push(i);
+    // ---- Cola secuencial (mantiene el orden estable) ----
+    // Primero el manifest, después el respaldo automático.
+    var cola = [];
 
-    function probe(){
-      if (!queue.length) return;
-      var n = queue.shift();
-      var src = 'photo-' + pad(n) + '.jpg';
+    FOTOS.forEach(function(f){
+      cola.push({ candidatos: [f.archivo], titulo: f.titulo });
+    });
+
+    for (var i = 1; i <= MAX; i++) {
+      cola.push({
+        candidatos: ['fotos/photo-' + pad(i) + '.jpg', 'photo-' + pad(i) + '.jpg'],
+        titulo: '№ ' + pad(i)
+      });
+    }
+
+    function probar(){
+      if (!cola.length) return;
+      var item = cola.shift();
+      intentar(item, 0);
+    }
+
+    function intentar(item, idx){
+      if (idx >= item.candidatos.length) { probar(); return; }
+      var src = item.candidatos[idx];
+      if (añadidas[src]) { probar(); return; }
       var test = new Image();
-      test.onload = function(){ addPhoto(src, n); probe(); };
-      test.onerror = function(){ probe(); };
+      test.onload = function(){ addPhoto(src, item.titulo); probar(); };
+      test.onerror = function(){ intentar(item, idx + 1); };
       test.src = src;
     }
-    probe();
+    probar();
 
     // ---- Lightbox ----
     var lb = document.getElementById('lightbox');
