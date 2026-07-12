@@ -3,14 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="light dark">
 <meta name="description" content="Diario fotográfico de Sebastián Angelo-Pérez. Un archivo personal de las cosas que me detengo a contemplar. Fredericia, DK.">
+<meta name="copyright" content="© Sebastián Angelo-Pérez. Todas las fotografías son propiedad del autor.">
 <title>Sebastián Angelo-Pérez — Diario fotográfico</title>
+<script>
+  // Aplica el tema guardado ANTES de pintar la página (evita el destello).
+  (function(){
+    try {
+      if (localStorage.getItem('tema') === 'dark') {
+        document.documentElement.setAttribute('data-theme','dark');
+      }
+    } catch(e) {}
+  })();
+</script>
 <link rel="preconnect" href="https://api.fontshare.com">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&f[]=zodiak@400,401,500&display=swap" rel="stylesheet">
 <style>
 
+  /* ---------- TEMA CLARO (default) ---------- */
   :root{
+    --bg: #f7f7f5;
+    --bg-raised: #ecece9;
+    --ink: #111110;
+    --ink-dim: #5f5f5b;
+    --ink-faint: #8c8c88;
+    --rule: rgba(17,17,16,0.14);
+    --rule-strong: rgba(17,17,16,0.30);
+    --lightbox-bg: rgba(247,247,245,0.97);
+  }
+
+  /* ---------- TEMA NOCHE ---------- */
+  [data-theme="dark"]{
     --bg: #0a0a0a;
     --bg-raised: #141414;
     --ink: #f5f5f3;
@@ -18,21 +42,31 @@
     --ink-faint: #565654;
     --rule: rgba(245,245,243,0.14);
     --rule-strong: rgba(245,245,243,0.30);
+    --lightbox-bg: rgba(5,5,5,0.97);
   }
 
   *{ box-sizing:border-box; margin:0; padding:0; }
-  html{ scroll-behavior:smooth; background:#0a0a0a; color-scheme:dark; }
+  html{ scroll-behavior:smooth; background:#f7f7f5; background:var(--bg); color-scheme:light; }
+  [data-theme="dark"]{ color-scheme:dark; }
   @media(prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } *{ transition:none!important; animation:none!important; } }
 
   body{
-    background:#0a0a0a; background:var(--bg); color:#f5f5f3; color:var(--ink);
+    background:var(--bg); color:var(--ink);
     font-family:'General Sans', sans-serif;
     font-size:16px; line-height:1.65;
+    transition:background .25s ease, color .25s ease;
   }
   ::selection{ background:var(--ink); color:var(--bg); }
   a{ color:inherit; text-decoration:none; }
   a:focus-visible, button:focus-visible{ outline:2px solid var(--ink); outline-offset:3px; }
   img{ display:block; max-width:100%; }
+
+  /* Protección básica de las fotografías (disuasiva, no absoluta) */
+  .ph img, .lightbox img{
+    -webkit-touch-callout:none;   /* iOS: sin menú "Guardar imagen" en long-press */
+    -webkit-user-select:none; user-select:none;
+    -webkit-user-drag:none;       /* sin arrastrar la imagen fuera */
+  }
 
   .wrap{ max-width:1040px; margin:0 auto; padding:0 32px; }
   @media(max-width:640px){ .wrap{ padding:0 18px; } }
@@ -49,13 +83,24 @@
     font-family:'Zodiak', Georgia, serif; font-size:19px; font-weight:500; font-style:italic;
     letter-spacing:.01em; line-height:1.15;
   }
+  .top-right{ display:flex; align-items:center; gap:24px; }
   .top-links{ display:flex; gap:24px; }
   .top-links a{
     font-size:12px; font-weight:500; color:var(--ink-dim);
     letter-spacing:.14em; text-transform:uppercase;
   }
   .top-links a:hover{ color:var(--ink); }
+
+  .theme-toggle{
+    background:none; border:1px solid var(--rule-strong); color:var(--ink-dim);
+    width:34px; height:34px; border-radius:50%; cursor:pointer;
+    font-size:15px; line-height:1; display:flex; align-items:center; justify-content:center;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .theme-toggle:hover{ color:var(--ink); border-color:var(--ink); }
+
   @media(max-width:560px){
+    .top-right{ gap:14px; }
     .top-links{ gap:14px; }
     .brand-name{ font-size:16px; }
   }
@@ -87,19 +132,38 @@
   .intro .meta span::after{ content:'·'; margin-left:14px; color:var(--ink-faint); }
   .intro .meta span:last-child::after{ content:''; margin:0; }
 
-  /* ---------- GALLERY ---------- */
-  .gallery{ display:flex; flex-direction:column; gap:110px; padding:110px 0 150px; }
-  @media(max-width:640px){ .gallery{ gap:64px; padding:64px 0 96px; } }
+  /* ---------- GALERÍA MASONRY ----------
+     Columnas CSS: cada foto conserva su proporción (vertical u
+     horizontal) y fluye en columnas tipo masonry. */
+  .gallery{
+    columns:2; column-gap:28px;
+    padding:90px 0 130px;
+  }
+  @media(min-width:920px){ .gallery{ columns:3; } }
+  @media(max-width:560px){ .gallery{ columns:1; } }
 
-  .ph{ margin:0; }
+  .ph{
+    margin:0 0 28px; break-inside:avoid; -webkit-column-break-inside:avoid;
+  }
   .ph button{
     display:block; width:100%; border:0; padding:0; background:var(--bg-raised);
-    cursor:zoom-in; overflow:hidden;
+    cursor:zoom-in; overflow:hidden; position:relative;
   }
-  .ph img{ width:100%; height:auto; }
+  /* Capa transparente sobre la foto: dificulta el long-press/clic directo */
+  .ph button::after{ content:''; position:absolute; inset:0; }
+
+  .ph img{
+    width:100%; height:auto;
+    filter:grayscale(1);
+    transition:filter .45s ease;
+  }
+  /* Hover (y foco con teclado): la foto revela su color real */
+  .ph button:hover img,
+  .ph button:focus-visible img{ filter:none; }
+
   .ph figcaption{
-    margin-top:16px; font-size:11.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-faint);
-    display:flex; justify-content:space-between; gap:16px;
+    margin-top:12px; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-faint);
+    display:flex; justify-content:space-between; gap:12px;
   }
 
   .gallery-note{
@@ -107,13 +171,19 @@
     border:1px dashed var(--rule-strong); max-width:560px; margin:0 auto;
   }
 
-  /* ---------- LIGHTBOX ---------- */
+  /* ---------- LIGHTBOX (muestra la foto en color) ---------- */
   .lightbox{
-    position:fixed; inset:0; z-index:200; background:rgba(5,5,5,.97);
+    position:fixed; inset:0; z-index:200; background:var(--lightbox-bg);
     display:none; align-items:center; justify-content:center; padding:34px;
   }
   .lightbox.open{ display:flex; }
-  .lightbox img{ max-width:100%; max-height:92vh; width:auto; height:auto; }
+  .lightbox-frame{ position:relative; max-width:100%; }
+  .lightbox-frame::after{ content:''; position:absolute; inset:0; }
+  .lightbox img{ max-width:100%; max-height:88vh; width:auto; height:auto; }
+  .lightbox-credit{
+    margin-top:12px; text-align:center; font-size:11px; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--ink-faint);
+  }
   .lightbox-close{
     position:absolute; top:20px; right:26px; background:none; border:0; color:var(--ink-dim);
     font-size:12px; font-weight:500; cursor:pointer; letter-spacing:.2em; text-transform:uppercase;
@@ -140,7 +210,8 @@
 </head>
 <body>
 
-<!-- Ícono de cámara — logo final (Logo_camara.svg) -->
+<!-- Ícono de cámara — logo final (Logo_camara.svg).
+     fill="currentColor": toma el color del tema activo, sirve para claro y noche. -->
 <svg width="0" height="0" style="position:absolute">
   <defs>
     <g id="cam-icon" fill="currentColor"><g>
@@ -164,11 +235,14 @@
   <div class="brand">
     <span class="brand-name">Sebastián Angelo-Pérez</span>
   </div>
-  <nav class="top-links">
-    <a href="https://www.instagram.com/camaramagna_/" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://open.substack.com/pub/sebastianangeloperez" target="_blank" rel="noopener">Substack</a>
-    <a href="mailto:s.angelo.perez@gmail.com">Contacto</a>
-  </nav>
+  <div class="top-right">
+    <nav class="top-links">
+      <a href="https://www.instagram.com/camaramagna_/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://open.substack.com/pub/sebastianangeloperez" target="_blank" rel="noopener">Substack</a>
+      <a href="mailto:s.angelo.perez@gmail.com">Contacto</a>
+    </nav>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Activar modo noche">☾</button>
+  </div>
 </header>
 
 <section class="intro">
@@ -194,7 +268,10 @@
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Fotografía ampliada">
   <button class="lightbox-close" id="lightbox-close">Cerrar ✕</button>
-  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-frame">
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-credit">© Sebastián Angelo-Pérez</div>
+  </div>
 </div>
 
 <footer class="foot">
@@ -206,7 +283,7 @@
       <a href="https://open.substack.com/pub/sebastianangeloperez" target="_blank" rel="noopener">Substack</a>
       <a href="mailto:s.angelo.perez@gmail.com">s.angelo.perez@gmail.com</a>
     </div>
-    <div class="foot-copy">© 2026 Sebastián Angelo-Pérez · Todas las fotografías son propiedad del autor.</div>
+    <div class="foot-copy">© 2026 Sebastián Angelo-Pérez · Todas las fotografías son propiedad del autor. Prohibida su reproducción sin autorización.</div>
   </div>
 </footer>
 
@@ -236,14 +313,12 @@
     var gallery = document.getElementById('gallery');
     var note = document.getElementById('empty-note');
     var añadidas = {};  // evita duplicados entre manifest y respaldo
-    var contador = 0;
 
     function pad(n){ return n < 10 ? '0'+n : ''+n; }
 
     function addPhoto(src, titulo){
       if (añadidas[src]) return;
       añadidas[src] = true;
-      contador++;
       var fig = document.createElement('figure');
       fig.className = 'ph';
       var btn = document.createElement('button');
@@ -252,13 +327,14 @@
       var img = document.createElement('img');
       img.src = src;
       img.loading = 'lazy';
-      img.alt = titulo + ' — Sebastián Angelo-Pérez';
+      img.draggable = false;
+      img.alt = titulo + ' — © Sebastián Angelo-Pérez';
       btn.appendChild(img);
       var cap = document.createElement('figcaption');
       var izq = document.createElement('span');
       izq.textContent = titulo;
       var der = document.createElement('span');
-      der.textContent = 'Sebastián Angelo-Pérez';
+      der.textContent = '© S. Angelo-Pérez';
       cap.appendChild(izq);
       cap.appendChild(der);
       fig.appendChild(btn);
@@ -300,13 +376,26 @@
     }
     probar();
 
-    // ---- Lightbox ----
+    // ---- Protección de derechos (disuasiva) ----
+    // Sin menú contextual ("guardar imagen como…") sobre las fotos.
+    document.addEventListener('contextmenu', function(e){
+      var t = e.target;
+      if (t && (t.tagName === 'IMG' || t.closest('.ph') || t.closest('.lightbox'))) {
+        e.preventDefault();
+      }
+    });
+    // Sin arrastrar imágenes fuera de la página.
+    document.addEventListener('dragstart', function(e){
+      if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+    });
+
+    // ---- Lightbox (muestra la foto en color) ----
     var lb = document.getElementById('lightbox');
     var lbImg = document.getElementById('lightbox-img');
     var lbClose = document.getElementById('lightbox-close');
 
     function openLightbox(src, alt){
-      lbImg.src = src; lbImg.alt = alt;
+      lbImg.src = src; lbImg.alt = alt; lbImg.draggable = false;
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
       lbClose.focus();
@@ -319,6 +408,29 @@
     lbClose.addEventListener('click', closeLightbox);
     lb.addEventListener('click', function(e){ if (e.target === lb) closeLightbox(); });
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLightbox(); });
+
+    // ---- Switch de tema (claro por defecto / modo noche) ----
+    var raiz = document.documentElement;
+    var toggle = document.getElementById('theme-toggle');
+
+    function pintarBoton(){
+      var oscuro = raiz.getAttribute('data-theme') === 'dark';
+      toggle.textContent = oscuro ? '☀' : '☾';
+      toggle.setAttribute('aria-label', oscuro ? 'Volver al modo claro' : 'Activar modo noche');
+    }
+
+    toggle.addEventListener('click', function(){
+      var oscuro = raiz.getAttribute('data-theme') === 'dark';
+      if (oscuro) {
+        raiz.removeAttribute('data-theme');
+      } else {
+        raiz.setAttribute('data-theme','dark');
+      }
+      try { localStorage.setItem('tema', oscuro ? 'light' : 'dark'); } catch(e) {}
+      pintarBoton();
+    });
+
+    pintarBoton();
   })();
 </script>
 
