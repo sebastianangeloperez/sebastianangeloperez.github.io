@@ -272,6 +272,30 @@ dialog.case[open]{animation:rise .45s cubic-bezier(.2,.7,.2,1)}
 .case-in .ai{background:var(--panel)}
 .print-only{display:none}
 
+/* Personaer */
+.pz-row{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(12px,1.4vw,18px);margin-top:clamp(36px,4.5vw,56px)}
+.pz-card{margin:0;flex:0 1 calc((100% - 4 * clamp(12px,1.4vw,18px)) / 5);min-width:0;display:flex;flex-direction:column}
+.pz-plate{background:#E8E2E1;aspect-ratio:4/5;max-width:100%}
+.pz-plate svg{display:block;width:100%;height:100%}
+.pz-card figcaption{background:var(--navy);color:#FFFFFF;display:flex;flex-direction:column;gap:3px;padding:0 14px 16px;flex:1}
+.pz-stripe{display:flex;height:6px;margin:0 -14px 12px}
+.pz-stripe i{flex:1}.pz-stripe i:nth-child(1){background:#DF0515}.pz-stripe i:nth-child(2){background:#E8616B}.pz-stripe i:nth-child(3){background:#F2B3B7}
+.pz-card strong{font-size:16px;font-weight:700;line-height:1.2}
+.pz-seg{font-size:13.5px;opacity:.9}
+.pz-arc{font-size:12px;color:#B9B9D2;margin-top:6px}
+.pz-ctrl{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:18px;font-size:13px;color:var(--soft)}
+.pz-ctrl button{font:inherit;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:10px 16px;border-radius:999px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);cursor:pointer}
+.pz-film{margin:clamp(32px,5vw,56px) 0 0;max-width:760px}
+.pz-film-box{aspect-ratio:16/9;max-width:100%;background:var(--dark);color:var(--dark-ink);display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:clamp(20px,3vw,40px)}
+.pz-film-box strong{font-size:clamp(24px,3vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.pz-film-box span{font-size:14px;color:var(--dark-soft)}
+.pz-film-box .pz-status{align-self:flex-start;font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--mint);color:var(--on-mint);margin-bottom:auto}
+#personaer .ai{background:var(--panel)}
+.band-vid-wrap{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.band-vid{position:absolute;top:50%;left:50%;border:0;transform:translate(-50%,-50%)}
+@media (max-width:1000px){.pz-card{flex-basis:calc((100% - 2 * clamp(12px,1.4vw,18px)) / 3)}}
+@media (max-width:640px){.pz-card{flex-basis:calc((100% - clamp(12px,1.4vw,18px)) / 2)}}
+
 /* Lightbox */
 .lightbox{border:0;padding:0;background:transparent;max-width:96vw;max-height:94vh;overflow:visible}
 .lightbox::backdrop{background:rgba(12,12,12,.9)}
@@ -325,6 +349,7 @@ dialog.case[open]{animation:rise .45s cubic-bezier(.2,.7,.2,1)}
     <nav class="nav" aria-label="Sektioner">
       <a href="#projekter">Projekter</a>
       <a href="#videoarkiv">Videoarkiv</a>
+      <a href="#personaer">Personaer</a>
       <a href="#erfaring">Erfaring</a>
       <a href="#om">Om mig</a>
       <a class="pill" href="#kontakt">Skriv til mig</a>
@@ -382,6 +407,7 @@ dialog.case[open]{animation:rise .45s cubic-bezier(.2,.7,.2,1)}
       <h2 class="h2" id="band-titel">Flere historier</h2>
       <a class="go" href="#videoarkiv"><i aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M3 1.5v11l9-5.5z" fill="currentColor"/></svg></i>Se filmene</a>
     </div>
+    <div class="band-vid-wrap" aria-hidden="true"><iframe class="band-vid" data-src="https://streamable.com/e/73lp3g?autoplay=1&amp;muted=1&amp;loop=1&amp;nocontrols=1" title="Loop: Flere historier" tabindex="-1" allow="autoplay; fullscreen"></iframe></div>
     <p class="band-credit">Heroes · Anne, sagsbehandleren</p>
   </section>
 
@@ -405,6 +431,10 @@ dialog.case[open]{animation:rise .45s cubic-bezier(.2,.7,.2,1)}
         <p class="count" aria-live="polite"></p>
       </div>
       <div class="vids">
+        <figure class="vid" data-genre="undervisning animation">
+          <div class="frame"><iframe src="https://streamable.com/e/5cxwm5" title="How offsetting works" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <figcaption><h3>How offsetting works</h3><p class="cap">Gældsstyrelsen · animeret explainer om modregning</p><div class="tags"><a class="tag" href="https://streamable.com/5cxwm5" target="_blank" rel="noopener">Åbn på Streamable</a></div></figcaption>
+        </figure>
         <figure class="vid" data-genre="kampagne">
           <div class="frame"><iframe src="https://streamable.com/e/0tjylc" title="Heroes: vejlederen" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
           <figcaption><h3>Heroes: vejlederen</h3><p class="cap">Gældsstyrelsen · employer branding</p><div class="tags"><a class="tag" href="https://streamable.com/0tjylc" target="_blank" rel="noopener">Åbn på Streamable</a></div></figcaption>
@@ -467,6 +497,483 @@ dialog.case[open]{animation:rise .45s cubic-bezier(.2,.7,.2,1)}
         <div class="pages"></div>
         <button class="round" type="button" data-step="1" aria-label="Næste side">→</button>
       </div>
+    </div>
+  </section>
+
+  <section class="sec gut" id="personaer" aria-labelledby="pz-titel" style="border-top:1px solid var(--rule)">
+    <div class="in">
+      <div class="arch-head">
+        <div>
+          <p class="cap">Intern konceptudvikling · Gældsstyrelsen · 2026</p>
+          <h2 class="h2" id="pz-titel">Fra persona<br>til explainer</h2>
+          <p class="cap">Research, karakterdesign og animation</p>
+        </div>
+        <p class="arch-intro">Hvordan forklarer man gæld til fem meget forskellige mennesker? Jeg byggede fem personaer på offentlige tal og gav dem ét fælles udtryksbibliotek, så de kan bære korte, målrettede explainers.</p>
+      </div>
+      <div class="pz-row">
+
+      <figure class="pz-card" data-p="daniel">
+        <div class="pz-plate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="15 25 220 275" id="daniel" role="img" aria-label="Driftige Daniel, PEF’er" class="figure"><defs><clipPath id="daniel-clip">
+      <ellipse cx="125.06" cy="147.95" rx="9.52" ry="9.55" fill="#14143c"/>
+    </clipPath>
+  </defs><g id="daniel-hb-wrap"><g id="daniel-headback"/></g><g id="daniel-torso"><path d="M157.58,185.64c-5.4-1.37-11.02-2.17-16.81-2.33h0c-.75-.03-1.51-.04-2.27-.04h-26.98c-.75,0-1.5.01-2.25.04h-.01s-.02-.01-.02,0c-5.79.16-11.41.96-16.81,2.33-33.6,8.5-58.45,38.93-58.45,75.17v39.19h182.06v-39.19c0-36.24-24.85-66.67-58.45-75.17ZM125,199.34c1.4,0,2.76-.18,4.06-.53l-4.05,5.37-4.05-5.37c1.29.35,2.64.53,4.04.53Z" fill="#434363"/>
+      <path d="M129.06,198.81l-4.05,5.37-4.05-5.37c1.29.35,2.64.53,4.04.53s2.76-.18,4.06-.53Z" fill="#e4c5b3"/>
+      <path d="M140.77,158.39v25.17c0,7.31-4.97,13.46-11.71,15.25-1.3.35-2.66.53-4.06.53s-2.75-.18-4.04-.53c-6.75-1.78-11.73-7.93-11.73-15.25v-25.17h31.54Z" fill="#e4c5b3"/>
+      <path d="M125.62,204.99l-.61.72-14.07,16.35-18.52-36.42h0c5.99-2.1,16.81-2.37,16.81-2.37l.02.03h.01s11.7,15.51,11.7,15.51l4.05,5.37.61.81Z" fill="#fff"/>
+      <path d="M157.59,185.63h-.01s-18.51,36.43-18.51,36.43l-14.06-16.35-.62-.72.62-.81,4.05-5.37,11.7-15.5h0s.02-.04.02-.04c0,0,10.81.27,16.8,2.36Z" fill="#fff"/>
+      <rect x="157.59" y="233.55" width="25.23" height="3.71" fill="#14143c"/>
+      <rect x="155.19" y="229.14" width="19.82" height="5.66" transform="translate(397.07 66.87) rotate(90)" fill="#df0515"/>
+    </g><g id="daniel-h-wrap"><g id="daniel-head"><g><rect x="80.78" y="48.31" width="88.5" height="122.18" rx="44.04" ry="44.04" fill="#e4c5b3"/>
+      <path d="M169.01,103.15v22.81c4.9-1.48,8.46-6.02,8.46-11.4s-3.57-9.92-8.46-11.4Z" fill="#e4c5b3"/>
+      <path d="M81.06,125.95v-22.81c-4.9,1.48-8.46,6.02-8.46,11.4s3.57,9.92,8.46,11.4Z" fill="#e4c5b3"/>
+      <path d="M128.33,126.12h-6.35c-1.01,0-1.77-.93-1.57-1.92l3.68-20.64c.14-.78.88-1.29,1.66-1.15.78.14,1.29.88,1.15,1.66l-3.3,18.29c-.09.47.28.9.76.9h3.97c.79,0,1.43.64,1.43,1.43s-.64,1.43-1.43,1.43Z" fill="#ddb7a0"/>
+      </g><g id="daniel-eyes"><g><circle cx="112.53" cy="110.48" r="5" fill="#fff"/>
+      <circle cx="137.47" cy="110.48" r="5" fill="#fff"/>
+      </g><g id="daniel-pupils"><path d="M109.61,111.06c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+      <path d="M134.49,110.48c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+      <circle cx="113.9" cy="108.45" r=".95" fill="#fff"/>
+      <circle cx="139.23" cy="108.45" r=".95" fill="#fff"/>
+      </g><g id="daniel-lids"><g display="none" id="daniel-Ojne_1">
+        <g>
+          <ellipse cx="112.39" cy="117.89" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <ellipse cx="137.33" cy="117.89" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+      </g>
+      <g display="none" id="daniel-Ojne_2">
+        <g>
+          <path d="M103.84,105.19s3.83-1.18,8.55-1.18,8.55,1.18,8.55,1.18c0,2.7-3.83,4.88-8.55,4.88s-8.55-2.19-8.55-4.88Z" fill="#e4c5b3"/>
+          <path d="M128.78,105.19s3.83-1.18,8.55-1.18,8.55,1.18,8.55,1.18c0,2.7-3.83,4.88-8.55,4.88s-8.55-2.19-8.55-4.88Z" fill="#e4c5b3"/>
+        </g>
+      </g>
+      <g display="none" id="daniel-Ojne_3">
+        <circle cx="112.5" cy="110.45" r="5" fill="#fff"/>
+        <circle cx="137.44" cy="110.45" r="5" fill="#fff"/>
+        <path d="M109.61,113.03c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+        <path d="M134.49,112.45c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+        <circle cx="113.9" cy="110.42" r=".95" fill="#fff"/>
+        <circle cx="139.23" cy="110.42" r=".95" fill="#fff"/>
+        <g>
+          <ellipse cx="112.57" cy="119" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <ellipse cx="137.5" cy="119" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+        <g>
+          <path d="M105.85,105.45c0-2.7,6.26-2.01,6.26-2.01,4.72,0,8.27-1.7,8.27,1,0,1.65-.68.08-2.87.97-1.4.56-3.1.9-4.94.9s-3.65-.35-5.07-.95c0,0-1.65,1.72-1.65.1Z" fill="#e4c5b3"/>
+          <ellipse cx="137.5" cy="101.41" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+      </g>
+      <g display="none" id="daniel-Ojne_4">
+        <circle cx="112.5" cy="110.45" r="5" fill="#fff"/>
+        <circle cx="137.44" cy="110.45" r="5" fill="#fff"/>
+        <path d="M109.61,111.03c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+        <path d="M134.49,110.45c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+        <circle cx="113.9" cy="108.42" r=".95" fill="#fff"/>
+        <circle cx="139.23" cy="108.42" r=".95" fill="#fff"/>
+        <g>
+          <ellipse cx="112.57" cy="117" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <ellipse cx="137.5" cy="117" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+        <g display="none">
+          <ellipse cx="137.5" cy="104.21" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <path d="M103.93,104.23s3.91-.43,8.63-.43,8.47-2.26,8.47.43-3.83,4.88-8.55,4.88-8.55-2.19-8.55-4.88Z" fill="#e4c5b3"/>
+        </g>
+      </g>
+    </g></g><g id="daniel-mouths"><g display="none" id="daniel-Mund_1">
+        <path d="M125.24,153.72h0c7.51,0,13.6-4.97,13.6-11.09h-27.2c0,6.13,6.09,11.09,13.6,11.09Z" fill="#14143c"/>
+        <path d="M113.1,142.66c0,1.41,1.15,2.57,2.57,2.57h19.14c1.41,0,2.57-1.15,2.57-2.57v-.06h-24.27v.06Z" fill="#fff"/>
+      </g>
+      <path id="daniel-Mund_2" d="M117.05,146.22s2.81,1.68,7.78,1.68,7.99-1.68,7.99-1.68" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="daniel-Mund_3" d="M132.71,147.22s-2.81-1.68-7.78-1.68-7.99,1.68-7.99,1.68" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="daniel-Mund_4" d="M134.77,147.88s-3.46-3.45-9.61-3.45-9.87,3.45-9.87,3.45" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="daniel-Mund_5" d="M121.12,147.7s4.6,1.67,10.17-.93c5.32-2.48,7.49-7.3,7.49-7.3" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="daniel-Mund_6" d="M115.26,144.5s3.46,3.45,9.61,3.45,9.87-3.45,9.87-3.45" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="daniel-Mund_7" d="M117.26,144.5L132.74,144.5" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><g display="none" id="daniel-Mund_8">
+        <ellipse cx="125.06" cy="147.95" rx="9.52" ry="9.55" fill="#14143c"/>
+        <g clip-path="url(#daniel-clip)">
+          <path d="M118.27,138.47c0,1.7,1.67,3.09,3.71,3.09h6.4c2.04,0,3.71-1.39,3.71-3.09v-.07h-13.82v.07Z" fill="#fff"/>
+        </g>
+      </g>
+    <path id="daniel-mouth-live" d="M0,0" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/></g><g><path d="M167.13,129.57s0,.08,0,.2c-.35,6.12-5.41,10.97-11.61,10.97-2.91,0-5.57-1.08-7.61-2.85-5.8-6.02-13.93-9.78-22.94-9.83-9.01.04-17.14,3.81-22.94,9.83-2.04,1.77-4.7,2.85-7.61,2.85-6.2,0-11.26-4.85-11.61-10.97,0-.13,0-.2,0-.2v-13.18c0-1.15-.93-2.09-2.09-2.09h0v18.5h.01c0,.13-.01.27-.01.4,0,12.01,4.79,22.89,12.56,30.86.85.87,1.74,1.71,2.66,2.51,1.33,1.16,2.72,2.24,4.19,3.24.2.13.4.26.61.39,6.95,4.55,15.24,7.2,24.16,7.2.02,0,.04,0,.07,0s.04,0,.07,0c8.92,0,17.22-2.65,24.16-7.2.2-.13.41-.26.61-.39,1.46-.99,2.86-2.08,4.19-3.24.92-.8,1.81-1.64,2.66-2.51,7.77-7.97,12.56-18.85,12.56-30.86,0-.13,0-.27-.01-.4h.01v-18.5h0c-1.15,0-2.09.93-2.09,2.09v13.18ZM133.63,150.83h-17.13c-2.95,0-5.6-2.11-5.99-5.04-.47-3.55,2.31-6.6,5.77-6.6h17.13c2.95,0,5.6,2.11,5.99,5.04.47,3.55-2.31,6.6-5.77,6.6Z" fill="#c7a78d"/>
+      <path d="M125,48.31c-24.5,0-44.36,19.86-44.36,44.36,0,.99.04,1.97.11,2.95,1.01-15.41,9.9-28.67,22.67-35.8,2.37,3.61,11.06,6.3,21.44,6.3s19.25-2.74,21.51-6.41c12.88,7.1,21.86,20.42,22.88,35.92.06-.98.11-1.96.11-2.95,0-24.5-19.86-44.36-44.36-44.36Z" fill="#ac8f70"/>
+      <circle cx="140.37" cy="111.39" r="10.42" fill="#f0f0f3" opacity=".2"/>
+          <circle cx="109.47" cy="111.39" r="10.42" fill="#f0f0f3" opacity=".2"/>
+          <circle cx="140.37" cy="111.39" r="10.42" stroke-miterlimit="10" fill="none" stroke="#0c0c3b" stroke-width="2.5"/>
+          <circle cx="109.47" cy="111.39" r="10.42" stroke-miterlimit="10" fill="none" stroke="#0c0c3b" stroke-width="2.5"/>
+          <line x1="150.31" y1="108.05" x2="168.35" y2="101.95" fill="none" stroke="#0c0c3b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="99.22" y1="107.9" x2="81.61" y2="101.95" fill="none" stroke="#0c0c3b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M130.03,111.02s-1.8-1.08-5-1.08-5.13,1.08-5.13,1.08" stroke-miterlimit="10" fill="none" stroke="#0c0c3b" stroke-width="2.5"/>
+        </g></g></g></svg></div>
+        <figcaption>
+          <span class="pz-stripe" aria-hidden="true"><i></i><i></i><i></i></span>
+          <strong>Driftige Daniel</strong>
+          <span class="pz-seg">PEF’er</span>
+          <span class="pz-arc">Fokuseret → afklaret</span>
+        </figcaption>
+      </figure>
+      <figure class="pz-card" data-p="filip">
+        <div class="pz-plate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="15 25 220 275" id="filip" role="img" aria-label="Fraskilte Filip, Fraskilt" class="figure"><defs><clipPath id="filip-clip">
+      <ellipse cx="125.06" cy="147.95" rx="9.52" ry="9.55" fill="#14143c"/>
+    </clipPath>
+  </defs><g id="filip-hb-wrap"><g id="filip-headback"><g transform="translate(33.97 48.09)"/></g></g><g id="filip-torso"><g transform="translate(33.97 48.09)"><path d="M182.06,212.72v39.19H0v-39.19c0-36.24,24.85-66.67,58.45-75.17,5.41-1.37,11.04-2.17,16.84-2.33l11.7,15.5,4.05,5.37,4.05-5.37,11.7-15.5h0c5.79.16,11.41.96,16.81,2.33,33.6,8.5,58.45,38.93,58.45,75.17Z" fill="#72728a"/>
+      <path d="M75.26,110.31h31.54v31.46c0,8.7-7.07,15.77-15.77,15.77h0c-8.7,0-15.77-7.07-15.77-15.77v-31.46h0Z" fill="#e4c5b3"/>
+      <path d="M123.62,137.54h-.01s-31.96,36.43-31.96,36.43l-33.2-36.42h0c5.99-2.1,16.81-2.37,16.81-2.37l.02.03h.01s11.7,15.51,11.7,15.51l4.05,5.37,4.05-5.37,11.7-15.5h0s.02-.04.02-.04c0,0,10.81.27,16.8,2.36Z" fill="#434363"/>
+    <circle cx="91.03" cy="187.73" r="3.08" fill="#e8e2e1"/>
+    <circle cx="91.03" cy="212.46" r="3.08" fill="#e8e2e1"/>
+    <circle cx="91.03" cy="237.2" r="3.08" fill="#e8e2e1"/>
+  </g></g><g id="filip-h-wrap"><g id="filip-head"><g><g transform="translate(33.97 48.09)"><path d="M135.31,44.26v34.11c0,24.32-19.72,44.04-44.04,44.04h-.42c-24.32,0-44.04-19.72-44.04-44.04v-34.11c0-18.89,11.9-35.01,28.62-41.26,4.8-1.8,9.99-2.78,15.42-2.78h.42c5.41,0,10.59.97,15.37,2.76,16.74,6.24,28.67,22.37,28.67,41.28Z" fill="#e4c5b3"/>
+      <path d="M135.05,55.06v22.81c4.9-1.48,8.46-6.02,8.46-11.4s-3.57-9.92-8.46-11.4Z" fill="#e4c5b3"/>
+      <path d="M47.09,77.87v-22.81c-4.9,1.48-8.46,6.02-8.46,11.4s3.57,9.92,8.46,11.4Z" fill="#e4c5b3"/>
+      <path d="M94.36,78.04h-6.35c-1.01,0-1.77-.93-1.57-1.92l3.68-20.64c.14-.78.88-1.29,1.66-1.15.78.14,1.29.88,1.15,1.66l-3.3,18.29c-.09.47.28.9.76.9h3.97c.79,0,1.43.64,1.43,1.43s-.64,1.43-1.43,1.43Z" fill="#ddb7a0"/>
+      </g></g><g id="filip-eyes"><g><g transform="translate(33.97 48.09)"><circle cx="78.56" cy="62.39" r="5" fill="#fff"/>
+      <circle cx="103.5" cy="62.39" r="5" fill="#fff"/>
+      </g></g><g id="filip-pupils"><g transform="translate(33.97 48.09)"><path d="M75.64,62.98c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+      <path d="M100.52,62.39c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+      <circle cx="79.93" cy="60.37" r=".95" fill="#fff"/>
+      <circle cx="105.26" cy="60.37" r=".95" fill="#fff"/>
+      </g></g><g id="filip-lids"><g display="none" id="filip-Ojne_1">
+        <g>
+          <ellipse cx="112.39" cy="117.89" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <ellipse cx="137.33" cy="117.89" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+      </g>
+      <g display="none" id="filip-Ojne_2">
+        <g>
+          <path d="M103.84,105.19s3.83-1.18,8.55-1.18,8.55,1.18,8.55,1.18c0,2.7-3.83,4.88-8.55,4.88s-8.55-2.19-8.55-4.88Z" fill="#e4c5b3"/>
+          <path d="M128.78,105.19s3.83-1.18,8.55-1.18,8.55,1.18,8.55,1.18c0,2.7-3.83,4.88-8.55,4.88s-8.55-2.19-8.55-4.88Z" fill="#e4c5b3"/>
+        </g>
+      </g>
+      <g display="none" id="filip-Ojne_3">
+        <circle cx="112.5" cy="110.45" r="5" fill="#fff"/>
+        <circle cx="137.44" cy="110.45" r="5" fill="#fff"/>
+        <path d="M109.61,113.03c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+        <path d="M134.49,112.45c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+        <circle cx="113.9" cy="110.42" r=".95" fill="#fff"/>
+        <circle cx="139.23" cy="110.42" r=".95" fill="#fff"/>
+        <g>
+          <ellipse cx="112.57" cy="119" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <ellipse cx="137.5" cy="119" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+        <g>
+          <path d="M105.85,105.45c0-2.7,6.26-2.01,6.26-2.01,4.72,0,8.27-1.7,8.27,1,0,1.65-.68.08-2.87.97-1.4.56-3.1.9-4.94.9s-3.65-.35-5.07-.95c0,0-1.65,1.72-1.65.1Z" fill="#e4c5b3"/>
+          <ellipse cx="137.5" cy="101.41" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+      </g>
+      <g display="none" id="filip-Ojne_4">
+        <circle cx="112.5" cy="110.45" r="5" fill="#fff"/>
+        <circle cx="137.44" cy="110.45" r="5" fill="#fff"/>
+        <path d="M109.61,111.03c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+        <path d="M134.49,110.45c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+        <circle cx="113.9" cy="108.42" r=".95" fill="#fff"/>
+        <circle cx="139.23" cy="108.42" r=".95" fill="#fff"/>
+        <g>
+          <ellipse cx="112.57" cy="117" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <ellipse cx="137.5" cy="117" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+        <g display="none">
+          <ellipse cx="137.5" cy="104.21" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <path d="M103.93,104.23s3.91-.43,8.63-.43,8.47-2.26,8.47.43-3.83,4.88-8.55,4.88-8.55-2.19-8.55-4.88Z" fill="#e4c5b3"/>
+        </g>
+      </g>
+    </g></g><g id="filip-mouths"><g display="none" id="filip-Mund_1">
+        <path d="M125.24,153.72h0c7.51,0,13.6-4.97,13.6-11.09h-27.2c0,6.13,6.09,11.09,13.6,11.09Z" fill="#14143c"/>
+        <path d="M113.1,142.66c0,1.41,1.15,2.57,2.57,2.57h19.14c1.41,0,2.57-1.15,2.57-2.57v-.06h-24.27v.06Z" fill="#fff"/>
+      </g>
+      <path id="filip-Mund_2" d="M117.05,146.22s2.81,1.68,7.78,1.68,7.99-1.68,7.99-1.68" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="filip-Mund_3" d="M132.71,147.22s-2.81-1.68-7.78-1.68-7.99,1.68-7.99,1.68" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="filip-Mund_4" d="M134.77,147.88s-3.46-3.45-9.61-3.45-9.87,3.45-9.87,3.45" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="filip-Mund_5" d="M121.12,147.7s4.6,1.67,10.17-.93c5.32-2.48,7.49-7.3,7.49-7.3" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="filip-Mund_6" d="M115.26,144.5s3.46,3.45,9.61,3.45,9.87-3.45,9.87-3.45" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="filip-Mund_7" d="M117.26,144.5L132.74,144.5" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><g display="none" id="filip-Mund_8">
+        <ellipse cx="125.06" cy="147.95" rx="9.52" ry="9.55" fill="#14143c"/>
+        <g clip-path="url(#filip-clip)">
+          <path d="M118.27,138.47c0,1.7,1.67,3.09,3.71,3.09h6.4c2.04,0,3.71-1.39,3.71-3.09v-.07h-13.82v.07Z" fill="#fff"/>
+        </g>
+      </g>
+    <path id="filip-mouth-live" d="M0,0" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/></g><g><g transform="translate(33.97 48.09)"><path d="M133.16,81.49s0,.08,0,.2c-.35,6.12-5.41,10.97-11.61,10.97-2.91,0-5.57-1.08-7.61-2.85-5.8-6.02-13.93-9.78-22.94-9.83-9.01.04-17.14,3.81-22.94,9.83-2.04,1.77-4.7,2.85-7.61,2.85-6.2,0-11.26-4.85-11.61-10.97,0-.13,0-.2,0-.2v-13.18c0-1.15-.93-2.09-2.09-2.09h0v18.5h.01c0,.13-.01.27-.01.4,0,12.01,4.79,22.89,12.56,30.86.85.87,1.74,1.71,2.66,2.51,1.33,1.16,2.72,2.24,4.19,3.24.2.13.4.26.61.39,6.95,4.55,15.24,7.2,24.16,7.2.02,0,.04,0,.07,0s.04,0,.07,0c8.92,0,17.22-2.65,24.16-7.2.2-.13.41-.26.61-.39,1.46-.99,2.86-2.08,4.19-3.24.92-.8,1.81-1.64,2.66-2.51,7.77-7.97,12.56-18.85,12.56-30.86,0-.13,0-.27-.01-.4h.01v-18.5h0c-1.15,0-2.09.93-2.09,2.09v13.18ZM99.66,102.75h-17.13c-2.95,0-5.6-2.11-5.99-5.04-.47-3.55,2.31-6.6,5.77-6.6h17.13c2.95,0,5.6,2.11,5.99,5.04.47,3.55-2.31,6.6-5.77,6.6Z" fill="#72728a"/>
+      <path d="M46.71,55.06s-4.34-38.05,11.26-45.45l1.49,28.79s-9.52.92-9.46,16.53l-3.29.13Z" fill="#72728a"/>
+      <path d="M135.4,55.06s4.34-38.05-11.26-45.45l-1.49,28.79s9.52.92,9.46,16.53l3.29.13Z" fill="#72728a"/>
+      <path d="M107.41,3.21c-14.21-5.87-27.21-2.23-31.55-.46-1.05.43-1.64.74-1.64.74l.06,7.41s24.4.97,34.77-6.93c0,0-.59-.32-1.63-.76Z" fill="#72728a"/>
+    </g></g></g></g></svg></div>
+        <figcaption>
+          <span class="pz-stripe" aria-hidden="true"><i></i><i></i><i></i></span>
+          <strong>Fraskilte Filip</strong>
+          <span class="pz-seg">Fraskilt</span>
+          <span class="pz-arc">Defensiv → afvæbnet</span>
+        </figcaption>
+      </figure>
+      <figure class="pz-card" data-p="nanna">
+        <div class="pz-plate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="15 25 220 275" id="nanna" role="img" aria-label="Nøjsomme Nanna, Førtidspensionist" class="figure"><defs><clipPath id="nanna-clip">
+      <ellipse cx="125.06" cy="147.95" rx="9.52" ry="9.55" fill="#14143c"/>
+    </clipPath>
+  </defs><g id="nanna-hb-wrap"><g id="nanna-headback"><g transform="translate(33.97 42.75)"><path d="M97.78,2.78h-13.5c-23.75,0-43.01,20.29-43.01,45.33h0v77.68h99.52V48.11h0c0-25.03-19.26-45.33-43.01-45.33Z" fill="#b8906f"/>
+    </g></g></g><g id="nanna-torso"><g transform="translate(33.97 42.75)"><path d="M182.06,218.06v39.19H0v-39.19c0-1.52.04-3.03.14-4.53.22-3.96.74-7.85,1.56-11.63.09-.44.19-.89.29-1.33.13-.6.27-1.21.43-1.8l.03-.12c.03-.12.06-.23.09-.35.88-3.36,1.99-6.64,3.3-9.81.34-.82.69-1.64,1.06-2.45.46-1.01.93-2,1.44-2.98l.06-.13c.27-.54.55-1.08.84-1.61,11.24-20.87,31.77-35.99,56.06-39.83,3.99-.64,8.07-.97,12.24-.97h26.98c4.14,0,8.21.32,12.18.96,24.02,3.78,44.36,18.59,55.7,39.08.85,1.53,1.65,3.09,2.39,4.68.02.04.03.07.05.11.87,1.87,1.67,3.78,2.39,5.73.82,2.21,1.54,4.47,2.16,6.76.14.49.27.98.39,1.48.06.25.12.51.18.77.2.83.38,1.66.55,2.5.69,3.39,1.16,6.85,1.38,10.38.11,1.68.17,3.38.17,5.09Z" fill="#df0515"/>
+      <path d="M116.7,141.48c-.5,13.76-11.81,24.76-25.7,24.76s-25.19-11-25.7-24.75c3.99-.64,8.07-.97,12.24-.97h26.98c4.14,0,8.21.32,12.18.96Z" fill="#e8e2e1"/>
+      <path d="M75.26,115.64h31.54v25.17c0,8.7-7.07,15.77-15.77,15.77h0c-8.7,0-15.77-7.07-15.77-15.77v-25.17h0Z" fill="#e4c5b3"/>
+      <g>
+        <polygon points="180.51 202.59 167.15 215.61 148.23 197.15 129.3 215.61 110.37 197.15 91.45 215.61 72.52 197.15 53.6 215.61 34.67 197.15 15.75 215.61 1.7 201.9 2.42 198.77 2.45 198.65 15.75 211.63 34.67 193.17 53.6 211.63 72.52 193.17 91.45 211.63 110.37 193.17 129.3 211.63 148.23 193.17 167.15 211.63 179.78 199.32 180.51 202.59" fill="#fff"/>
+      </g>
+      <g>
+        <polygon points="182.06 222.19 182.06 230.14 172.19 239.33 152.37 220.87 132.55 239.33 112.73 220.87 92.92 239.33 73.1 220.87 53.28 239.33 33.46 220.87 13.65 239.33 0 226.62 0 218.67 13.65 231.38 33.46 212.92 53.28 231.38 73.1 212.92 92.92 231.38 112.73 212.92 132.55 231.38 152.37 212.92 172.19 231.38 182.06 222.19" fill="#fff"/>
+      </g>
+      <g>
+        <path d="M177.23,191.08l-5.04,4.69-19.82-18.46-19.82,18.46-19.82-18.46-19.81,18.46-19.82-18.46-19.82,18.46-19.82-18.46-19.81,18.46-7.81-7.28,2.5-5.43.06-.13,5.25,4.89,19.81-18.47,19.82,18.47,19.82-18.47,19.82,18.47,19.81-18.47,19.82,18.47,19.82-18.46,19.82,18.46,2.65-2.47c.87,1.87,1.67,3.78,2.39,5.73Z" fill="#fff"/>
+      </g>
+    </g></g><g id="nanna-h-wrap"><g id="nanna-head"><g><g transform="translate(33.97 42.75)"><rect x="46.81" y="5.56" width="88.5" height="122.18" rx="44.04" ry="44.04" fill="#e4c5b3"/>
+      <path d="M135.05,60.39v22.81c4.9-1.48,8.46-6.02,8.46-11.4s-3.57-9.92-8.46-11.4Z" fill="#e4c5b3"/>
+      <path d="M47.09,83.2v-22.81c-4.9,1.48-8.46,6.02-8.46,11.4s3.57,9.92,8.46,11.4Z" fill="#e4c5b3"/>
+      <path d="M94.36,83.37h-6.35c-1.01,0-1.77-.93-1.57-1.92l3.68-20.64c.14-.78.88-1.29,1.66-1.15.78.14,1.29.88,1.15,1.66l-3.3,18.29c-.09.47.28.9.76.9h3.97c.79,0,1.43.64,1.43,1.43s-.64,1.43-1.43,1.43Z" fill="#ddb7a0"/>
+      </g></g><g id="nanna-eyes"><g><g transform="translate(33.97 42.75)"><circle cx="78.56" cy="67.72" r="5" fill="#fff"/>
+      <circle cx="103.5" cy="67.72" r="5" fill="#fff"/>
+      </g></g><g id="nanna-pupils"><g transform="translate(33.97 42.75)"><path d="M75.64,68.31c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+      <path d="M100.52,67.72c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+      <circle cx="79.93" cy="65.7" r=".95" fill="#fff"/>
+      <circle cx="105.26" cy="65.7" r=".95" fill="#fff"/>
+      </g></g><g id="nanna-lids"><g display="none" id="nanna-Ojne_1">
+        <g>
+          <ellipse cx="112.39" cy="117.89" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <ellipse cx="137.33" cy="117.89" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+      </g>
+      <g display="none" id="nanna-Ojne_2">
+        <g>
+          <path d="M103.84,105.19s3.83-1.18,8.55-1.18,8.55,1.18,8.55,1.18c0,2.7-3.83,4.88-8.55,4.88s-8.55-2.19-8.55-4.88Z" fill="#e4c5b3"/>
+          <path d="M128.78,105.19s3.83-1.18,8.55-1.18,8.55,1.18,8.55,1.18c0,2.7-3.83,4.88-8.55,4.88s-8.55-2.19-8.55-4.88Z" fill="#e4c5b3"/>
+        </g>
+      </g>
+      <g display="none" id="nanna-Ojne_3">
+        <circle cx="112.5" cy="110.45" r="5" fill="#fff"/>
+        <circle cx="137.44" cy="110.45" r="5" fill="#fff"/>
+        <path d="M109.61,113.03c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+        <path d="M134.49,112.45c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+        <circle cx="113.9" cy="110.42" r=".95" fill="#fff"/>
+        <circle cx="139.23" cy="110.42" r=".95" fill="#fff"/>
+        <g>
+          <ellipse cx="112.57" cy="119" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <ellipse cx="137.5" cy="119" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+        <g>
+          <path d="M105.85,105.45c0-2.7,6.26-2.01,6.26-2.01,4.72,0,8.27-1.7,8.27,1,0,1.65-.68.08-2.87.97-1.4.56-3.1.9-4.94.9s-3.65-.35-5.07-.95c0,0-1.65,1.72-1.65.1Z" fill="#e4c5b3"/>
+          <ellipse cx="137.5" cy="101.41" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+      </g>
+      <g display="none" id="nanna-Ojne_4">
+        <circle cx="112.5" cy="110.45" r="5" fill="#fff"/>
+        <circle cx="137.44" cy="110.45" r="5" fill="#fff"/>
+        <path d="M109.61,111.03c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+        <path d="M134.49,110.45c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+        <circle cx="113.9" cy="108.42" r=".95" fill="#fff"/>
+        <circle cx="139.23" cy="108.42" r=".95" fill="#fff"/>
+        <g>
+          <ellipse cx="112.57" cy="117" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <ellipse cx="137.5" cy="117" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+        <g display="none">
+          <ellipse cx="137.5" cy="104.21" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <path d="M103.93,104.23s3.91-.43,8.63-.43,8.47-2.26,8.47.43-3.83,4.88-8.55,4.88-8.55-2.19-8.55-4.88Z" fill="#e4c5b3"/>
+        </g>
+      </g>
+    </g></g><g id="nanna-mouths"><g display="none" id="nanna-Mund_1">
+        <path d="M125.24,153.72h0c7.51,0,13.6-4.97,13.6-11.09h-27.2c0,6.13,6.09,11.09,13.6,11.09Z" fill="#14143c"/>
+        <path d="M113.1,142.66c0,1.41,1.15,2.57,2.57,2.57h19.14c1.41,0,2.57-1.15,2.57-2.57v-.06h-24.27v.06Z" fill="#fff"/>
+      </g>
+      <path id="nanna-Mund_2" d="M117.05,146.22s2.81,1.68,7.78,1.68,7.99-1.68,7.99-1.68" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="nanna-Mund_3" d="M132.71,147.22s-2.81-1.68-7.78-1.68-7.99,1.68-7.99,1.68" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="nanna-Mund_4" d="M134.77,147.88s-3.46-3.45-9.61-3.45-9.87,3.45-9.87,3.45" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="nanna-Mund_5" d="M121.12,147.7s4.6,1.67,10.17-.93c5.32-2.48,7.49-7.3,7.49-7.3" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="nanna-Mund_6" d="M115.26,144.5s3.46,3.45,9.61,3.45,9.87-3.45,9.87-3.45" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="nanna-Mund_7" d="M117.26,144.5L132.74,144.5" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><g display="none" id="nanna-Mund_8">
+        <ellipse cx="125.06" cy="147.95" rx="9.52" ry="9.55" fill="#14143c"/>
+        <g clip-path="url(#nanna-clip)">
+          <path d="M118.27,138.47c0,1.7,1.67,3.09,3.71,3.09h6.4c2.04,0,3.71-1.39,3.71-3.09v-.07h-13.82v.07Z" fill="#fff"/>
+        </g>
+      </g>
+    <path id="nanna-mouth-live" d="M0,0" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/></g><g><g transform="translate(33.97 42.75)"><path d="M91.03,5.2h0c-24.8,0-44.91,20.11-44.91,44.91h22.82s5.08-5.96,5.08-5.96l5.08,5.96h56.85c0-24.8-20.11-44.91-44.91-44.91Z" fill="#b8906f"/>
+    <circle cx="106.4" cy="68.64" r="10.42" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.5"/>
+          <circle cx="75.5" cy="68.64" r="10.42" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.5"/>
+          <line x1="116.34" y1="65.3" x2="134.38" y2="59.2" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+          <line x1="65.25" y1="65.15" x2="47.64" y2="59.2" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+          <path d="M96.06,68.26s-1.8-1.08-5-1.08-5.13,1.08-5.13,1.08" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2.5"/>
+        <path d="M135.68,78.4c0-1.07.86-1.93,1.93-1.93s1.93.86,1.93,1.93-.87,1.93-1.93,1.93-1.93-.86-1.93-1.93Z" fill="#fff"/>
+        <path d="M42.58,78.4c0-1.07.86-1.93,1.93-1.93s1.93.86,1.93,1.93-.87,1.93-1.93,1.93-1.93-.86-1.93-1.93Z" fill="#fff"/>
+      </g></g></g></g></svg></div>
+        <figcaption>
+          <span class="pz-stripe" aria-hidden="true"><i></i><i></i><i></i></span>
+          <strong>Nøjsomme Nanna</strong>
+          <span class="pz-seg">Førtidspensionist</span>
+          <span class="pz-arc">Bekymret → tryg</span>
+        </figcaption>
+      </figure>
+      <figure class="pz-card" data-p="hector">
+        <div class="pz-plate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="15 25 220 275" id="hector" role="img" aria-label="Håbefulde Hector, Ikke-dansksproget" class="figure"><defs><clipPath id="hector-clip">
+      <ellipse cx="125.06" cy="147.95" rx="9.52" ry="9.55" fill="#14143c"/>
+    </clipPath>
+  </defs><g id="hector-hb-wrap"><g id="hector-headback"><g transform="translate(33.97 46.91)"/></g></g><g id="hector-torso"><g transform="translate(33.97 46.91)"><path d="M77.54,136.36h26.98c42.79,0,77.54,34.74,77.54,77.54v39.2H0v-39.2c0-42.79,34.74-77.54,77.54-77.54Z" fill="#14143c"/>
+      <path d="M73.82,119.42h31.54v25.17c0,8.7-7.07,15.77-15.77,15.77h0c-8.7,0-15.77-7.07-15.77-15.77v-25.17h0Z" fill="#bda58d"/>
+      <circle cx="91.03" cy="188.9" r="3.08" fill="#e8e2e1"/>
+      <circle cx="91.03" cy="213.64" r="3.08" fill="#e8e2e1"/>
+      <circle cx="91.03" cy="238.37" r="3.08" fill="#e8e2e1"/>
+    <path d="M115.05,144.97c0-2.93-.53-5.73-1.49-8.32-.69-1.86-2.5-3.06-4.49-3.06h-35.97c-1.98,0-3.8,1.2-4.49,3.06-.96,2.59-1.49,5.39-1.49,8.32,0,3.34.69,6.53,1.93,9.42.76,1.76,2.51,2.9,4.43,2.9h28.13v-.21h9.96v.21h.07c2.16-3.6,3.41-7.82,3.41-12.32Z" fill="#df0515"/>
+      <path d="M98.03,157.08v32.83c0,2.66,2.16,4.82,4.82,4.82h3.92c2.66,0,4.82-2.16,4.82-4.82v-32.83h-13.55Z" fill="#df0515"/>
+    </g></g><g id="hector-h-wrap"><g id="hector-head"><g><g transform="translate(33.97 46.91)"><rect x="46.81" y="1.4" width="88.5" height="122.18" rx="44.04" ry="44.04" fill="#bda58d"/>
+      <path d="M135.05,56.24v22.81c4.9-1.48,8.46-6.02,8.46-11.4s-3.57-9.92-8.46-11.4Z" fill="#bda58d"/>
+      <path d="M47.14,79.04v-22.81c-4.9,1.48-8.46,6.02-8.46,11.4s3.57,9.92,8.46,11.4Z" fill="#bda58d"/>
+      <path d="M94.36,79.21h-6.35c-1.01,0-1.77-.93-1.57-1.92l3.68-20.64c.14-.78.88-1.29,1.66-1.15.78.14,1.29.88,1.15,1.66l-3.3,18.29c-.09.47.28.9.76.9h3.97c.79,0,1.43.64,1.43,1.43s-.64,1.43-1.43,1.43Z" fill="#ac8f70"/>
+      </g></g><g id="hector-eyes"><g><g transform="translate(33.97 46.91)"><circle cx="78.56" cy="63.57" r="5" fill="#fff"/>
+      <circle cx="103.5" cy="63.57" r="5" fill="#fff"/>
+      </g></g><g id="hector-pupils"><g transform="translate(33.97 46.91)"><path d="M75.64,64.15c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+      <path d="M100.52,63.57c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+      <circle cx="79.93" cy="61.54" r=".95" fill="#fff"/>
+      <circle cx="105.26" cy="61.54" r=".95" fill="#fff"/>
+      </g></g><g id="hector-lids"><g display="none" id="hector-Ojne_1">
+        <g>
+          <ellipse cx="112.39" cy="117.89" rx="8.55" ry="4.88" fill="#bda58d"/>
+          <ellipse cx="137.33" cy="117.89" rx="8.55" ry="4.88" fill="#bda58d"/>
+        </g>
+      </g>
+      <g display="none" id="hector-Ojne_2">
+        <g>
+          <path d="M103.84,105.19s3.83-1.18,8.55-1.18,8.55,1.18,8.55,1.18c0,2.7-3.83,4.88-8.55,4.88s-8.55-2.19-8.55-4.88Z" fill="#bda58d"/>
+          <path d="M128.78,105.19s3.83-1.18,8.55-1.18,8.55,1.18,8.55,1.18c0,2.7-3.83,4.88-8.55,4.88s-8.55-2.19-8.55-4.88Z" fill="#bda58d"/>
+        </g>
+      </g>
+      <g display="none" id="hector-Ojne_3">
+        <circle cx="112.5" cy="110.45" r="5" fill="#fff"/>
+        <circle cx="137.44" cy="110.45" r="5" fill="#fff"/>
+        <path d="M109.61,113.03c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+        <path d="M134.49,112.45c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+        <circle cx="113.9" cy="110.42" r=".95" fill="#fff"/>
+        <circle cx="139.23" cy="110.42" r=".95" fill="#fff"/>
+        <g>
+          <ellipse cx="112.57" cy="119" rx="8.55" ry="4.88" fill="#bda58d"/>
+          <ellipse cx="137.5" cy="119" rx="8.55" ry="4.88" fill="#bda58d"/>
+        </g>
+        <g>
+          <path d="M105.85,105.45c0-2.7,6.26-2.01,6.26-2.01,4.72,0,8.27-1.7,8.27,1,0,1.65-.68.08-2.87.97-1.4.56-3.1.9-4.94.9s-3.65-.35-5.07-.95c0,0-1.65,1.72-1.65.1Z" fill="#bda58d"/>
+          <ellipse cx="137.5" cy="101.41" rx="8.55" ry="4.88" fill="#bda58d"/>
+        </g>
+      </g>
+      <g display="none" id="hector-Ojne_4">
+        <circle cx="112.5" cy="110.45" r="5" fill="#fff"/>
+        <circle cx="137.44" cy="110.45" r="5" fill="#fff"/>
+        <path d="M109.61,111.03c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+        <path d="M134.49,110.45c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+        <circle cx="113.9" cy="108.42" r=".95" fill="#fff"/>
+        <circle cx="139.23" cy="108.42" r=".95" fill="#fff"/>
+        <g>
+          <ellipse cx="112.57" cy="117" rx="8.55" ry="4.88" fill="#bda58d"/>
+          <ellipse cx="137.5" cy="117" rx="8.55" ry="4.88" fill="#bda58d"/>
+        </g>
+        <g display="none">
+          <ellipse cx="137.5" cy="104.21" rx="8.55" ry="4.88" fill="#bda58d"/>
+          <path d="M103.93,104.23s3.91-.43,8.63-.43,8.47-2.26,8.47.43-3.83,4.88-8.55,4.88-8.55-2.19-8.55-4.88Z" fill="#bda58d"/>
+        </g>
+      </g>
+    </g></g><g id="hector-mouths"><g display="none" id="hector-Mund_1">
+        <path d="M125.24,153.72h0c7.51,0,13.6-4.97,13.6-11.09h-27.2c0,6.13,6.09,11.09,13.6,11.09Z" fill="#14143c"/>
+        <path d="M113.1,142.66c0,1.41,1.15,2.57,2.57,2.57h19.14c1.41,0,2.57-1.15,2.57-2.57v-.06h-24.27v.06Z" fill="#fff"/>
+      </g>
+      <path id="hector-Mund_2" d="M117.05,146.22s2.81,1.68,7.78,1.68,7.99-1.68,7.99-1.68" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="hector-Mund_3" d="M132.71,147.22s-2.81-1.68-7.78-1.68-7.99,1.68-7.99,1.68" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="hector-Mund_4" d="M134.77,147.88s-3.46-3.45-9.61-3.45-9.87,3.45-9.87,3.45" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="hector-Mund_5" d="M121.12,147.7s4.6,1.67,10.17-.93c5.32-2.48,7.49-7.3,7.49-7.3" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="hector-Mund_6" d="M115.26,144.5s3.46,3.45,9.61,3.45,9.87-3.45,9.87-3.45" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="hector-Mund_7" d="M117.26,144.5L132.74,144.5" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><g display="none" id="hector-Mund_8">
+        <ellipse cx="125.06" cy="147.95" rx="9.52" ry="9.55" fill="#14143c"/>
+        <g clip-path="url(#hector-clip)">
+          <path d="M118.27,138.47c0,1.7,1.67,3.09,3.71,3.09h6.4c2.04,0,3.71-1.39,3.71-3.09v-.07h-13.82v.07Z" fill="#fff"/>
+        </g>
+      </g>
+    <path id="hector-mouth-live" d="M0,0" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/></g><g><g transform="translate(33.97 46.91)"><path d="M135.24,67.4c-.58,0-1.1.23-1.47.61-.38.38-.61.9-.61,1.48v13.17s0,.08-.01.2c-.35,6.12-5.41,10.97-11.61,10.97-2.91,0-5.56-1.08-7.61-2.84-5.8-6.02-13.92-9.79-22.93-9.83-9.01.04-17.14,3.81-22.94,9.83-2.05,1.76-4.7,2.84-7.61,2.84-6.2,0-11.26-4.85-11.61-10.97-.01-.12-.01-.2-.01-.2v-13.17c0-1.16-.93-2.09-2.08-2.09v18.5h.01c0,.13-.01.26-.01.4,0,12.01,4.79,22.89,12.56,30.86.85.87,1.74,1.71,2.66,2.51,1.33,1.15,2.73,2.24,4.19,3.23.2.14.4.27.61.4,6.94,4.55,15.24,7.2,24.16,7.2h.13c8.92,0,17.22-2.65,24.16-7.2.21-.13.41-.26.61-.4,1.46-.99,2.86-2.08,4.19-3.23.92-.8,1.81-1.64,2.66-2.51,7.77-7.97,12.56-18.85,12.56-30.86,0-.14-.01-.27-.01-.4h.01v-18.5ZM104.05,106.86c-1.69,1.7-4.03,2.75-6.61,2.75h-13.51c-5.15,0-9.37-4.21-9.37-9.36,0-2.58,1.06-4.92,2.75-6.62,1.7-1.7,4.05-2.75,6.62-2.75h13.51c5.15,0,9.36,4.22,9.36,9.37,0,2.58-1.05,4.92-2.75,6.61Z" fill="#14143c"/>
+      <path d="M121.49,9.9c-3-2.34-6.32-4.33-9.9-5.89C105.78,1.47,99.32.03,92.5,0c0,0-.36,0-.36,0-13.62.07-28.64,4.87-37.84,15.02-8.17,9.01-13.17,24.06-11.35,36.29.87,5.84,4.01,12.26,5.79,7.83,8.42-21,17.29-8.32,36.5-11.51,24.06-4,27.84-16.18,27.84-16.18,3.13,25.22,19.27,9.29,22.19,25.14l.81-5.47c2.01-13.63-1.94-27.56-11.11-37.83-1.2-1.35-2.38-2.51-3.49-3.37Z" fill="#14143c"/>
+      </g></g></g></g></svg></div>
+        <figcaption>
+          <span class="pz-stripe" aria-hidden="true"><i></i><i></i><i></i></span>
+          <strong>Håbefulde Hector</strong>
+          <span class="pz-seg">Ikke-dansksproget</span>
+          <span class="pz-arc">Håbefuld → forstår</span>
+        </figcaption>
+      </figure>
+      <figure class="pz-card" data-p="noah">
+        <div class="pz-plate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="15 25 220 275" id="noah" role="img" aria-label="Nysgerrige Noah, Ung, 15–21 år" class="figure"><defs><clipPath id="noah-clip">
+      <ellipse cx="125.06" cy="147.95" rx="9.52" ry="9.55" fill="#14143c"/>
+    </clipPath>
+  </defs><g id="noah-hb-wrap"><g id="noah-headback"><g transform="translate(33.97 42.75)"/></g></g><g id="noah-torso"><g transform="translate(33.97 42.75)"><path d="M77.54,140.51h26.98c42.79,0,77.54,34.74,77.54,77.54v39.2H0v-39.2c0-42.79,34.74-77.54,77.54-77.54Z" fill="#434363"/>
+      <ellipse cx="91.03" cy="154" rx="28.35" ry="17.45" fill="#14143c" stroke="#434363" stroke-miterlimit="10" stroke-width="6.44"/>
+      <g>
+        <path d="M133.6,174.11c-3.34-24.13-21.16-42.61-42.57-42.61s-39.25,18.5-42.57,42.65l.32.06c-.28,2.04.17,4.21,1.38,5.91l2.86,4.01c-.03-.6-.03-1.2-.03-1.81,0-6.27,1.09-12.24,3.08-17.66,5.83-15.96,19.31-27.16,34.96-27.16s29.3,11.34,35.07,27.45c1.91,5.35,2.97,11.22,2.97,17.37,0,.51,0,1.03-.03,1.54l2.67-3.74c1.21-1.7,1.66-3.87,1.38-5.91l.49-.1Z" fill="#df0515"/>
+        <g>
+          <path d="M73.28,189.63c.37.95-.08,2.04-1,2.38l-7.97,2.95c-4.19,1.54-8.95-.7-10.66-5.02l-2.2-5.6-2.19-5.57c-.93-2.36-.74-4.87.31-6.9.86-1.67,2.31-3.02,4.2-3.72l8.18-3.02h0c.83-.31,1.75.13,2.09,1l9.23,23.5Z" fill="#df0515"/>
+          <path d="M108.78,189.63c-.37.95.08,2.04,1,2.38l7.97,2.95c4.19,1.54,8.95-.7,10.66-5.02l2.2-5.6,2.19-5.57c.93-2.36.74-4.87-.31-6.9-.86-1.67-2.31-3.02-4.2-3.72l-8.18-3.02h0c-.83-.31-1.75.13-2.09,1l-9.23,23.5Z" fill="#df0515"/>
+        </g>
+      </g>
+      <path d="M75.26,115.64h31.54v25.17c0,8.7-7.07,15.77-15.77,15.77h0c-8.7,0-15.77-7.07-15.77-15.77v-25.17h0Z" fill="#e4c5b3"/>
+      <rect x="81.05" y="161.88" width="3.82" height="27.58" fill="#fff"/>
+        <rect x="97.19" y="161.88" width="3.82" height="27.58" fill="#fff"/>
+      </g></g><g id="noah-h-wrap"><g id="noah-head"><g><g transform="translate(33.97 42.75)"><rect x="46.81" y="5.56" width="88.5" height="122.18" rx="44.04" ry="44.04" fill="#e4c5b3"/>
+      <path d="M135.05,60.39v22.81c4.9-1.48,8.46-6.02,8.46-11.4s-3.57-9.92-8.46-11.4Z" fill="#e4c5b3"/>
+      <path d="M47.09,83.2v-22.81c-4.9,1.48-8.46,6.02-8.46,11.4s3.57,9.92,8.46,11.4Z" fill="#e4c5b3"/>
+      <path d="M94.36,83.37h-6.35c-1.01,0-1.77-.93-1.57-1.92l3.68-20.64c.14-.78.88-1.29,1.66-1.15.78.14,1.29.88,1.15,1.66l-3.3,18.29c-.09.47.28.9.76.9h3.97c.79,0,1.43.64,1.43,1.43s-.64,1.43-1.43,1.43Z" fill="#ddb7a0"/>
+      </g></g><g id="noah-eyes"><g><g transform="translate(33.97 42.75)"><circle cx="78.56" cy="67.72" r="5" fill="#fff"/>
+      <circle cx="103.5" cy="67.72" r="5" fill="#fff"/>
+      </g></g><g id="noah-pupils"><g transform="translate(33.97 42.75)"><path d="M75.64,68.31c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+      <path d="M100.52,67.72c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+      <circle cx="79.93" cy="65.7" r=".95" fill="#fff"/>
+      <circle cx="105.26" cy="65.7" r=".95" fill="#fff"/>
+    </g></g><g id="noah-lids"><g display="none" id="noah-Ojne_1">
+        <g>
+          <ellipse cx="112.39" cy="117.89" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <ellipse cx="137.33" cy="117.89" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+      </g>
+      <g display="none" id="noah-Ojne_2">
+        <g>
+          <path d="M103.84,105.19s3.83-1.18,8.55-1.18,8.55,1.18,8.55,1.18c0,2.7-3.83,4.88-8.55,4.88s-8.55-2.19-8.55-4.88Z" fill="#e4c5b3"/>
+          <path d="M128.78,105.19s3.83-1.18,8.55-1.18,8.55,1.18,8.55,1.18c0,2.7-3.83,4.88-8.55,4.88s-8.55-2.19-8.55-4.88Z" fill="#e4c5b3"/>
+        </g>
+      </g>
+      <g display="none" id="noah-Ojne_3">
+        <circle cx="112.5" cy="110.45" r="5" fill="#fff"/>
+        <circle cx="137.44" cy="110.45" r="5" fill="#fff"/>
+        <path d="M109.61,113.03c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+        <path d="M134.49,112.45c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+        <circle cx="113.9" cy="110.42" r=".95" fill="#fff"/>
+        <circle cx="139.23" cy="110.42" r=".95" fill="#fff"/>
+        <g>
+          <ellipse cx="112.57" cy="119" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <ellipse cx="137.5" cy="119" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+        <g>
+          <path d="M105.85,105.45c0-2.7,6.26-2.01,6.26-2.01,4.72,0,8.27-1.7,8.27,1,0,1.65-.68.08-2.87.97-1.4.56-3.1.9-4.94.9s-3.65-.35-5.07-.95c0,0-1.65,1.72-1.65.1Z" fill="#e4c5b3"/>
+          <ellipse cx="137.5" cy="101.41" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+      </g>
+      <g display="none" id="noah-Ojne_4">
+        <circle cx="112.5" cy="110.45" r="5" fill="#fff"/>
+        <circle cx="137.44" cy="110.45" r="5" fill="#fff"/>
+        <path d="M109.61,111.03c-.4-2.1,1.41-3.91,3.51-3.51,1.17.22,2.12,1.18,2.34,2.34.4,2.1-1.41,3.91-3.51,3.51-1.17-.22-2.12-1.18-2.34-2.34Z" fill="#14143c"/>
+        <path d="M134.49,110.45c0-1.65,1.33-2.98,2.98-2.98s2.98,1.33,2.98,2.98-1.33,2.98-2.98,2.98-2.98-1.33-2.98-2.98Z" fill="#14143c"/>
+        <circle cx="113.9" cy="108.42" r=".95" fill="#fff"/>
+        <circle cx="139.23" cy="108.42" r=".95" fill="#fff"/>
+        <g>
+          <ellipse cx="112.57" cy="117" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <ellipse cx="137.5" cy="117" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+        </g>
+        <g display="none">
+          <ellipse cx="137.5" cy="104.21" rx="8.55" ry="4.88" fill="#e4c5b3"/>
+          <path d="M103.93,104.23s3.91-.43,8.63-.43,8.47-2.26,8.47.43-3.83,4.88-8.55,4.88-8.55-2.19-8.55-4.88Z" fill="#e4c5b3"/>
+        </g>
+      </g>
+    </g></g><g id="noah-mouths"><g display="none" id="noah-Mund_1">
+        <path d="M125.24,153.72h0c7.51,0,13.6-4.97,13.6-11.09h-27.2c0,6.13,6.09,11.09,13.6,11.09Z" fill="#14143c"/>
+        <path d="M113.1,142.66c0,1.41,1.15,2.57,2.57,2.57h19.14c1.41,0,2.57-1.15,2.57-2.57v-.06h-24.27v.06Z" fill="#fff"/>
+      </g>
+      <path id="noah-Mund_2" d="M117.05,146.22s2.81,1.68,7.78,1.68,7.99-1.68,7.99-1.68" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="noah-Mund_3" d="M132.71,147.22s-2.81-1.68-7.78-1.68-7.99,1.68-7.99,1.68" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="noah-Mund_4" d="M134.77,147.88s-3.46-3.45-9.61-3.45-9.87,3.45-9.87,3.45" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="noah-Mund_5" d="M121.12,147.7s4.6,1.67,10.17-.93c5.32-2.48,7.49-7.3,7.49-7.3" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="noah-Mund_6" d="M115.26,144.5s3.46,3.45,9.61,3.45,9.87-3.45,9.87-3.45" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><path id="noah-Mund_7" d="M117.26,144.5L132.74,144.5" display="none" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/><g display="none" id="noah-Mund_8">
+        <ellipse cx="125.06" cy="147.95" rx="9.52" ry="9.55" fill="#14143c"/>
+        <g clip-path="url(#noah-clip)">
+          <path d="M118.27,138.47c0,1.7,1.67,3.09,3.71,3.09h6.4c2.04,0,3.71-1.39,3.71-3.09v-.07h-13.82v.07Z" fill="#fff"/>
+        </g>
+      </g>
+    <path id="noah-mouth-live" d="M0,0" fill="none" stroke="#0c0c3b" stroke-linecap="round" stroke-width="3" stroke-miterlimit="10"/></g><g><g transform="translate(33.97 42.75)"><path d="M127.78,11.59c-3-2.34-12.61-1.85-16.19-3.42C106.25,5.83,90.54.82,82.74,0c-.71-.07-1.16.71-.77,1.3.93,1.41,1.79,3.43-.47,3.85-3.56.65-16.91.13-20.29,1.44-3.74,1.45,2.52,4.81-.68,7.09-2.27,1.62-12.83,5.84-14.69,7.89-2.55,2.81,3.81,3.69,2.14,7.27-1.67,3.58-8.79,16.45-9.63,20.51-1,4.87,4.46,1.01,4.6,6.11.16,5.91,5.05,25.9,6.82,21.47,2.16-5.39,5.14-12.42,7.52-14.21,3.25-2.44,4.99,1.45,9.41,2.02,2.48.32,5.86-9.81,8.92-9.59s6.63,5.46,10.41,4.83c3.01-.5,5.5-6.38,7.91-7.1s4.41,4.21,6.28,3.35c7.71-3.52,10.9-11.96,12.14-16.89.18-.72,1.2-.7,1.35.03,4.23,19.79,18.8,6.38,21.57,21.35l.81-5.47c.6-4.1.67-8.22.22-12.26-.21-1.92,3.68-1.43,3.24-3.3-.56-2.37-5.54-7.08-6.47-9.34-.86-2.09,5.95-2.07,4.78-4.02-1.45-2.42-10.97-6.78-12.88-8.92-1.2-1.35,3.91-4.98,2.8-5.84Z" fill="#14143c"/>
+        </g></g></g></g></svg></div>
+        <figcaption>
+          <span class="pz-stripe" aria-hidden="true"><i></i><i></i><i></i></span>
+          <strong>Nysgerrige Noah</strong>
+          <span class="pz-seg">Ung, 15–21 år</span>
+          <span class="pz-arc">Nysgerrig → med på den</span>
+        </figcaption>
+      </figure>
+  
+      </div>
+      <div class="pz-ctrl"><button id="pz-play" type="button" aria-pressed="false">Pause</button><span>Loops i SVG, animeret direkte i siden</span></div>
+      <div class="beats">
+        <div class="beat"><h4>Research</h4><p>Omkring 846.000 borgere havde gæld til det offentlige ved udgangen af 2024. Jeg koblede tallene med de sagstyper, borgerne møder – fra lønindeholdelse til eftergivelse – og byggede personaerne efter Lene Nielsens persona-metode.</p></div>
+        <div class="beat"><h4>Karakterbygger</h4><p>Figurerne er tegnet i Illustrator på én fælles geometri med otte munde og fire øjenudtryk. Derfor kan alle fem animeres med den samme rig.</p></div>
+        <div class="beat"><h4>Explaineren</h4><p>Nanna er førtidspensionist og skylder for meget udbetalt boligstøtte. På under et minut viser hun, hvordan man søger om eftergivelse ud fra en helhedsvurdering. Animeret i Cavalry med speak fra ElevenLabs.</p></div>
+      </div>
+      <figure class="pz-film">
+        <div class="pz-film-box"><span class="pz-status">I produktion</span><strong>Nanna forklarer eftergivelse</strong><span>Explainer · ca. 55 sek. · dansk speak og undertekster</span></div>
+      </figure>
+      <p class="ai"><span class="label">AI</span><span>AI-assisteret research og faktatjek, kode til web-loopsene og en AI-genereret stemme i explaineren. Personaer, figurer, manus og animation i Cavalry er mine.</span></p>
+      <p class="note">Intern konceptudvikling – ikke en officiel kampagne fra Gældsstyrelsen. Personaerne er arketyper bygget på offentlige tal, ikke virkelige personer. Figurerne stammer fra Gældsstyrelsens grafikbibliotek.</p>
     </div>
   </section>
 
@@ -989,6 +1496,129 @@ document.querySelectorAll('.copy').forEach(function(btn){
   next.addEventListener('click',function(){ page++; render(true); });
   render(false);
 })();
+(function(){
+  var f=document.querySelector('.band-vid'); if(!f) return;
+  try{ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; }catch(e){}
+  var box=f.parentNode;
+  function fit(){ var w=box.clientWidth,h=box.clientHeight; if(!w||!h) return; var vw=Math.max(w,h*16/9); f.style.width=Math.ceil(vw)+'px'; f.style.height=Math.ceil(vw*9/16)+'px'; }
+  fit(); window.addEventListener('resize',fit);
+  f.src=f.getAttribute('data-src');
+})();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MorphSVGPlugin.min.js"></script>
+<script>
+
+(() => {
+  if (!window.gsap) return;
+  gsap.registerPlugin(MorphSVGPlugin);
+  const CFG = {"daniel": {"mouth": 2}, "filip": {"mouth": 7}, "nanna": {"mouth": 6}, "hector": {"mouth": 1}, "noah": {"mouth": 5}};
+  const LINE = [2, 3, 4, 5, 6, 7];
+  const NECK = '125 170', EYE = '125 110.5';
+  const tls = {};
+
+  function rig(p, idx) {
+    const $ = id => document.getElementById(p + '-' + id);
+    const live = $('mouth-live'), def = CFG[p].mouth;
+    const heads = [$('head'), $('headback')];
+    const show = (el, on) => el && el.setAttribute('display', on ? 'inline' : 'none');
+    const dOf = n => $('Mund_' + n).getAttribute('d');
+    const setEyes = n => { for (let k = 1; k <= 4; k++) show($('Ojne_' + k), n === k); };
+    const setMouth = n => {
+      show($('Mund_1'), n === 1); show($('Mund_8'), n === 8);
+      show(live, LINE.includes(n));
+      if (LINE.includes(n)) live.setAttribute('d', dOf(n));
+    };
+    live.setAttribute('d', dOf(LINE.includes(def) ? def : 7));
+    const reset = () => { setMouth(def); setEyes(0); };
+    reset();
+
+    // ambient: breathing + blinking
+    gsap.to([$('hb-wrap'), $('h-wrap')], { y: -1.2, duration: 2.1, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: idx * .3 });
+    gsap.to($('torso'), { scaleY: 1.012, svgOrigin: '125 300', duration: 2.1, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: idx * .3 });
+    const blink = () => {
+      gsap.timeline()
+        .to($('eyes'), { scaleY: .08, svgOrigin: EYE, duration: .07, ease: 'power1.in' })
+        .to($('eyes'), { scaleY: 1, duration: .11, ease: 'power1.out' });
+      gsap.delayedCall(gsap.utils.random(2.4, 5.2), blink);
+    };
+    gsap.delayedCall(1 + idx * .7, blink);
+
+    // gesture timeline
+    const tl = gsap.timeline({ repeat: -1, repeatDelay: .8, delay: idx * .5 });
+    tl.call(reset, null, 0);
+    const api = {
+      mouth(n, at, dur = .3) {
+        if (LINE.includes(n)) {
+          tl.call(() => { show(live, true); show($('Mund_1'), false); show($('Mund_8'), false); }, null, at);
+          tl.to(live, { morphSVG: '#' + p + '-Mund_' + n, duration: dur, ease: 'power2.inOut' }, at);
+        } else {
+          tl.call(() => { show(live, false); show($('Mund_1'), n === 1); show($('Mund_8'), n === 8); }, null, at);
+        }
+      },
+      eyes(n, at) { tl.call(() => setEyes(n), null, at); },
+      head(vars, at) { tl.to(heads, Object.assign({ svgOrigin: NECK, duration: .55, ease: 'sine.inOut' }, vars), at); },
+      look(x, y, at, dur = .3) { tl.to($('pupils'), { x, y, duration: dur, ease: 'power2.inOut' }, at); },
+      torso(vars, at) { tl.to($('torso'), Object.assign({ duration: .6, ease: 'sine.inOut' }, vars), at); },
+      hold(at) { tl.to({}, { duration: .01 }, at); }
+    };
+    GESTURES[p](api);
+    tls[p] = tl;
+  }
+
+  // Each loop starts and ends on the persona's resting face.
+  const GESTURES = {
+    daniel: a => { // looks down at the paper, then up, satisfied
+      a.head({ rotation: 3, y: 2 }, 1.0); a.eyes(3, 1.1); a.mouth(7, 1.1);
+      a.head({ rotation: 0, y: 0, duration: .45 }, 2.9); a.eyes(1, 3.0); a.mouth(6, 3.0);
+      a.head({ rotation: -2.5, duration: .2 }, 3.4); a.head({ rotation: 0, duration: .3 }, 3.6);
+      a.eyes(0, 4.8); a.mouth(2, 4.8); a.hold(6.0);
+    },
+    filip: a => { // guarded, then exhales and softens
+      a.head({ rotation: -2.5, y: -1 }, 1.0); a.eyes(2, 1.1); a.mouth(3, 1.1);
+      a.torso({ y: 2 }, 2.9); a.head({ rotation: 1.5, y: 2, duration: .6 }, 2.9);
+      a.eyes(0, 3.0); a.mouth(2, 3.1, .45);
+      a.torso({ y: 0 }, 4.7); a.head({ rotation: 0, y: 0 }, 4.7); a.mouth(7, 4.9);
+      a.hold(6.0);
+    },
+    nanna: a => { // scans with a worried mouth, settles into a calm smile
+      a.mouth(3, .8); a.look(-1.4, 0, .9); a.look(1.4, 0, 1.6, .45); a.look(0, 0, 2.3);
+      a.mouth(6, 2.6, .4); a.eyes(1, 2.6); a.head({ rotation: 4, duration: .7 }, 2.6);
+      a.head({ rotation: 0, duration: .6 }, 4.3); a.eyes(0, 4.5); a.hold(5.8);
+    },
+    hector: a => { // reads briefly, understands, nods
+      a.mouth(7, 1.0); a.eyes(3, 1.0); a.head({ rotation: 2, y: 1.5 }, 1.0);
+      a.head({ rotation: -2.5, y: 0, duration: .25 }, 2.1); a.head({ rotation: 0, duration: .3 }, 2.35);
+      a.eyes(1, 2.1); a.mouth(6, 2.1);
+      a.mouth(1, 3.7); a.eyes(0, 3.7); a.hold(5.4);
+    },
+    noah: a => { // nods to the music, "oops", grin
+      [0, .45, .9, 1.35].forEach((t, i) => a.head({ rotation: i % 2 ? -3 : 3, duration: .42 }, t + .2));
+      a.head({ rotation: 0, y: -2, duration: .3 }, 2.1); a.mouth(8, 2.2); a.look(0, -1, 2.2, .2);
+      a.head({ y: 0, duration: .4 }, 3.1); a.mouth(6, 3.2); a.eyes(1, 3.2); a.look(0, 0, 3.2);
+      a.mouth(5, 4.4); a.eyes(0, 4.4); a.hold(5.6);
+    }
+  };
+
+  Object.keys(CFG).forEach((p, i) => rig(p, i));
+  window.__personaTimelines = tls;
+
+  const sec = document.getElementById('personaer');
+  const play = document.getElementById('pz-play');
+  let userPaused = false, visible = true;
+  const apply = () => {
+    const paused = userPaused || !visible;
+    paused ? gsap.globalTimeline.pause() : gsap.globalTimeline.resume();
+    play.textContent = userPaused ? 'Afspil' : 'Pause';
+    play.setAttribute('aria-pressed', String(userPaused));
+  };
+  play.addEventListener('click', () => { userPaused = !userPaused; apply(); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; apply(); }, { rootMargin: '120px' }).observe(sec);
+  }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { userPaused = true; apply(); }
+})();
+</script>
+
 
 </body></html>
