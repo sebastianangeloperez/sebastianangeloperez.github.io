@@ -296,6 +296,55 @@ dialog.case[open]{animation:rise .45s cubic-bezier(.2,.7,.2,1)}
 @media (max-width:1000px){.pz-card{flex-basis:calc((100% - 2 * clamp(12px,1.4vw,18px)) / 3)}}
 @media (max-width:640px){.pz-card{flex-basis:calc((100% - clamp(12px,1.4vw,18px)) / 2)}}
 
+
+/* CV: udskriv-knap */
+.cv-tools{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.print-btn{display:inline-flex;align-items:center;gap:10px;font:inherit;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:12px 18px;border-radius:999px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:background .25s,color .25s}
+.print-btn:hover{background:var(--ink);color:var(--bg)}
+.print-btn svg{width:16px;height:16px;flex:none}
+
+/* CV: lodret afsløring ved scroll */
+.rv-on #erfaring [data-rv]{opacity:0;transform:translateY(22px);clip-path:inset(0 0 100% -2em);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),clip-path 1s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms);will-change:opacity,transform}
+.rv-on #erfaring [data-rv].is-in{opacity:1;transform:none;clip-path:inset(-.3em -.3em -.4em -2em)}
+.rv-on #erfaring .jobs{border-top-color:transparent;position:relative}
+.rv-on #erfaring .job{position:relative;border-bottom-color:transparent}
+.rv-on #erfaring .job::after,.rv-on #erfaring .jobs::before{content:"";position:absolute;left:0;right:0;height:1px;background:var(--rule);transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.rv-on #erfaring .job::after{bottom:-1px}
+.rv-on #erfaring .jobs::before{top:-1px}
+.rv-on #erfaring .job.line-in::after,.rv-on #erfaring .jobs.line-in::before{transform:scaleX(1)}
+@media (prefers-reduced-motion: reduce){.rv-on #erfaring [data-rv]{opacity:1;transform:none;clip-path:none;transition:none}.rv-on #erfaring .job::after,.rv-on #erfaring .jobs::before{transform:none;transition:none}}
+
+/* CV: udskriftsvenlig (kun CV'et, A4) */
+.cv-print-head{display:none}
+@media print{
+  @page{size:A4;margin:16mm 16mm 18mm}
+  :root{--ink:#131414;--soft:#55564f;--rule:#D6D6D1;--mint-deep:#0E6857;color-scheme:light}
+  html,body{background:#fff!important;color:#131414!important;font-size:10.5pt;line-height:1.45}
+  header.hero,footer,dialog,.band,main > section:not(#erfaring),.cv-tools,.logos,#erfaring .exp-top > div:last-child,#erfaring .exp-top .cap{display:none!important}
+  #erfaring{padding:0!important;border:0!important}
+  #erfaring .in{max-width:none}
+  #erfaring [data-rv]{opacity:1!important;transform:none!important;clip-path:none!important}
+  #erfaring .job::after,#erfaring .jobs::before{display:none!important}
+  #erfaring .jobs,#erfaring .job{border-color:#D6D6D1!important}
+  .cv-print-head{display:grid;grid-template-columns:1fr auto;gap:4mm 10mm;align-items:end;padding-bottom:5mm;margin-bottom:6mm;border-bottom:2px solid #7ACBB9}
+  .cv-print-head h1{margin:0;font-size:24pt;font-weight:800;letter-spacing:-.03em;line-height:1}
+  .cv-print-head .role{margin:2mm 0 0;font-size:9pt;letter-spacing:.24em;text-transform:uppercase;color:#55564f}
+  .cv-print-head address{font-style:normal;text-align:right;font-size:9.5pt;line-height:1.55}
+  .exp-top{display:block!important;margin:0 0 2mm}
+  #erfaring .h2{font-size:13pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#0E6857}
+  #erfaring .h2::before{content:"Erfaring · "}
+  .jobs{margin-top:3mm!important}
+  .job{grid-template-columns:30mm 1fr!important;gap:2mm 6mm!important;padding-block:3.2mm!important;break-inside:avoid;page-break-inside:avoid}
+  .job h3{font-size:11pt}
+  .job .org{font-size:8pt;margin-top:1mm}
+  .job ul{margin-top:1.6mm!important;font-size:9.5pt;max-width:none;color:#33342f}
+  .years{font-size:9pt}
+  .facts{grid-template-columns:repeat(3,1fr)!important;gap:8mm!important;padding-top:6mm!important;break-inside:avoid}
+  .facts ul{font-size:9.5pt;gap:2mm}
+  .facts small{font-size:8.5pt}
+  a{text-decoration:none}
+}
+
 /* Lightbox */
 .lightbox{border:0;padding:0;background:transparent;max-width:96vw;max-height:94vh;overflow:visible}
 .lightbox::backdrop{background:rgba(12,12,12,.9)}
@@ -979,10 +1028,15 @@ dialog.case[open]{animation:rise .45s cubic-bezier(.2,.7,.2,1)}
 
   <section class="sec gut" id="erfaring" aria-labelledby="erfaring-titel" style="border-top:1px solid var(--rule)">
     <div class="in">
+    <div class="cv-print-head" aria-hidden="true">
+      <div><h1>Sebastián Angelo-Perez</h1><p class="role">Senior Media Producer &amp; visuel storyteller</p></div>
+      <address>s.angelo.perez@gmail.com<br>+45 61 99 64 94<br>linkedin.com/in/angeloperez<br>Fredericia</address>
+    </div>
       <div class="exp-top">
         <div>
           <p class="cap">Erfaring</p>
           <h2 class="h2" id="erfaring-titel">Fra idé til færdigt produkt</h2>
+          <div class="cv-tools"><button class="print-btn" type="button" id="print-cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="1.5"/><path d="M6 14h12v7H6z"/></svg>Udskriv CV</button></div>
         </div>
         <div>
           <p class="cap" style="text-align:right">Arbejdsgivere</p>
@@ -1503,6 +1557,39 @@ document.querySelectorAll('.copy').forEach(function(btn){
   function fit(){ var w=box.clientWidth,h=box.clientHeight; if(!w||!h) return; var vw=Math.max(w,h*16/9); f.style.width=Math.ceil(vw)+'px'; f.style.height=Math.ceil(vw*9/16)+'px'; }
   fit(); window.addEventListener('resize',fit);
   f.src=f.getAttribute('data-src');
+})();
+</script>
+<script>
+(function(){
+  var b=document.getElementById('print-cv');
+  if(b) b.addEventListener('click',function(){ try{ window.print(); }catch(e){} });
+})();
+(function(){
+  var sec=document.getElementById('erfaring'); if(!sec || !('IntersectionObserver' in window)) return;
+  try{ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; }catch(e){}
+  var groups=[];
+  function mark(list){ var g=[]; list.forEach(function(el){ el.setAttribute('data-rv',''); g.push(el); }); return g; }
+  var top=sec.querySelector('.exp-top');
+  groups.push({box:top, items:mark([].slice.call(top.querySelectorAll('.cap, .h2, .cv-tools, .logos li')))});
+  sec.querySelectorAll('.job').forEach(function(j){
+    groups.push({box:j, line:j, items:mark([].slice.call(j.querySelectorAll('.years, h3, li')))});
+  });
+  sec.querySelectorAll('.facts > div').forEach(function(f){
+    groups.push({box:f, items:mark([].slice.call(f.querySelectorAll('h4, li')))});
+  });
+  var jobs=sec.querySelector('.jobs');
+  document.documentElement.classList.add('rv-on');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var g=e.target.__rv; io.unobserve(e.target);
+      if(g.line) g.line.classList.add('line-in');
+      g.items.forEach(function(el,i){ el.style.setProperty('--d',(i*90)+'ms'); el.classList.add('is-in'); });
+    });
+  },{rootMargin:'0px 0px -12% 0px',threshold:0.08});
+  groups.forEach(function(g){ g.box.__rv=g; io.observe(g.box); });
+  if(jobs){ var jo=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ jobs.classList.add('line-in'); jo.disconnect(); } },{threshold:0}); jo.observe(jobs); }
+  window.addEventListener('beforeprint',function(){ sec.querySelectorAll('[data-rv]').forEach(function(el){ el.classList.add('is-in'); }); });
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
